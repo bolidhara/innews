@@ -1,5 +1,4 @@
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+
 
 <?php
 // Sample data (replace with real database query in production)
