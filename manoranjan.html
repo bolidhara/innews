@@ -123,6 +123,127 @@
 </nav>
 
 <div class="main-content">
+
+
+<!-- Entertainment News Section -->
+<div class="news-section">
+    <h2>मनोरंजन समाचार</h2>
+    <div id="entertainment-news" class="news-list">
+        <!-- यहां खबरें लोड होंगी -->
+    </div>
+    <a href="#" class="load-more" id="load-entertainment" onclick="loadMoreNews('entertainment')">और खबरें लोड करें</a>
+</div>
+
+<script>
+    // स्टेटिक डेटा (इसे API से बदल सकते हैं)
+    const worldNewsData = {
+        entertainment: [
+            { title: "मनोरंजन खबर 1", content: "यह मनोरंजन समाचार का विवरण है।", image: "entertainment1.jpg" },
+            { title: "मनोरंजन खबर 2", content: "यह मनोरंजन समाचार का विवरण है।", image: "entertainment2.jpg" },
+            { title: "मनोरंजन खबर 3", content: "यह मनोरंजन समाचार का विवरण है।", image: "entertainment3.jpg" },
+            { title: "मनोरंजन खबर 4", content: "यह मनोरंजन समाचार का विवरण है।", image: "entertainment4.jpg" },
+            { title: "मनोरंजन खबर 5", content: "यह मनोरंजन समाचार का विवरण है।", image: "entertainment5.jpg" },
+            { title: "मनोरंजन खबर 6", content: "यह मनोरंजन समाचार का विवरण है।", image: "entertainment6.jpg" },
+            { title: "मनोरंजन खबर 7", content: "यह मनोरंजन समाचार का विवरण है।", image: "entertainment7.jpg" },
+            { title: "मनोरंजन खबर 8", content: "यह मनोरंजन समाचार का विवरण है।", image: "entertainment8.jpg" }
+        ]
+    };
+
+    let entertainmentPage = 1;
+
+    // खबरें लोड करने का कार्य
+    function loadMoreNews(section) {
+        let data = worldNewsData[section];
+        let page = entertainmentPage;
+        let start = (page - 1) * 5;
+        let end = start + 5;
+        let newsToLoad = data.slice(start, end);
+
+        // HTML में खबरें जोड़ना
+        newsToLoad.forEach(news => {
+            const newsHtml = `
+                <div class="post">
+                    <img src="${news.image}" alt="${news.title}" class="news-image">
+                    <h3>${news.title}</h3>
+                    <p>${news.content}</p>
+                </div>
+            `;
+            document.getElementById(`${section}-news`).insertAdjacentHTML('beforeend', newsHtml);
+        });
+
+        // अगला पेज बढ़ाना
+        entertainmentPage++;
+
+        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन हटा देना
+        if ((page * 5) >= data.length) {
+            document.getElementById(`load-${section}`).style.display = 'none';
+        }
+    }
+
+    // पेज लोड होते ही पहली बार खबरें लोड करना
+    window.onload = function() {
+        loadMoreNews('entertainment');
+    };
+</script>
+
+<!-- CSS (खबरों और इमेज के लेआउट को ठीक करने के लिए) -->
+<style>
+    .news-section {
+        margin: 20px 0;
+    }
+
+    .news-list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .post {
+        width: 100%;
+        max-width: 480px;
+        margin: 10px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .post img.news-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .post h3 {
+        font-size: 18px;
+        color: #333;
+        margin: 10px;
+    }
+
+    .post p {
+        font-size: 14px;
+        color: #555;
+        margin: 0 10px 10px;
+    }
+
+    .load-more {
+        text-align: center;
+        display: block;
+        background-color: #2196f3;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 16px;
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .load-more:hover {
+        background-color: #1976d2;
+    }
+</style>
+
+
     <!-- मुख्य पोस्ट यहां दिखाई देंगे -->
 </div>
 
