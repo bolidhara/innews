@@ -123,7 +123,117 @@
 </nav>
 
 <div class="main-content">
+
+
+
+<!-- International News Section -->
+<div class="news-section">
+    <h2>अंतर्राष्ट्रीय समाचार</h2>
+    <div id="international-news" class="news-list">
+        <!-- यहां खबरें लोड होंगी -->
+    </div>
+    <a href="#" class="load-more" id="load-international" onclick="loadMoreNews('international')">और खबरें लोड करें</a>
+</div>
+
+<!-- Global Politics Section -->
+<div class="news-section">
+    <h2>वैश्विक राजनीति</h2>
+    <div id="global-politics" class="news-list">
+        <!-- यहां खबरें लोड होंगी -->
+    </div>
+    <a href="#" class="load-more" id="load-politics" onclick="loadMoreNews('politics')">और खबरें लोड करें</a>
+</div>
+
+<!-- World Sports Section -->
+<div class="news-section">
+    <h2>दुनिया से खेल</h2>
+    <div id="world-sports" class="news-list">
+        <!-- यहां खबरें लोड होंगी -->
+    </div>
+    <a href="#" class="load-more" id="load-sports" onclick="loadMoreNews('sports')">और खबरें लोड करें</a>
+</div>
+
+<script>
+    // स्टेटिक डेटा (इसे API से बदल सकते हैं)
+    const worldNewsData = {
+        international: [
+            { title: "अंतर्राष्ट्रीय खबर 1", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
+            { title: "अंतर्राष्ट्रीय खबर 2", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
+            { title: "अंतर्राष्ट्रीय खबर 3", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
+            { title: "अंतर्राष्ट्रीय खबर 4", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
+            { title: "अंतर्राष्ट्रीय खबर 5", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
+            { title: "अंतर्राष्ट्रीय खबर 6", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
+            { title: "अंतर्राष्ट्रीय खबर 7", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
+            { title: "अंतर्राष्ट्रीय खबर 8", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" }
+        ],
+        politics: [
+            { title: "वैश्विक राजनीति 1", content: "यह वैश्विक राजनीति का विवरण है।" },
+            { title: "वैश्विक राजनीति 2", content: "यह वैश्विक राजनीति का विवरण है।" },
+            { title: "वैश्विक राजनीति 3", content: "यह वैश्विक राजनीति का विवरण है।" },
+            { title: "वैश्विक राजनीति 4", content: "यह वैश्विक राजनीति का विवरण है।" },
+            { title: "वैश्विक राजनीति 5", content: "यह वैश्विक राजनीति का विवरण है।" },
+            { title: "वैश्विक राजनीति 6", content: "यह वैश्विक राजनीति का विवरण है।" },
+            { title: "वैश्विक राजनीति 7", content: "यह वैश्विक राजनीति का विवरण है।" },
+            { title: "वैश्विक राजनीति 8", content: "यह वैश्विक राजनीति का विवरण है।" }
+        ],
+        sports: [
+            { title: "दुनिया से खेल 1", content: "यह खेल समाचार का विवरण है।" },
+            { title: "दुनिया से खेल 2", content: "यह खेल समाचार का विवरण है।" },
+            { title: "दुनिया से खेल 3", content: "यह खेल समाचार का विवरण है।" },
+            { title: "दुनिया से खेल 4", content: "यह खेल समाचार का विवरण है।" },
+            { title: "दुनिया से खेल 5", content: "यह खेल समाचार का विवरण है।" },
+            { title: "दुनिया से खेल 6", content: "यह खेल समाचार का विवरण है।" },
+            { title: "दुनिया से खेल 7", content: "यह खेल समाचार का विवरण है।" },
+            { title: "दुनिया से खेल 8", content: "यह खेल समाचार का विवरण है।" }
+        ]
+    };
+
+    let internationalPage = 1;
+    let politicsPage = 1;
+    let sportsPage = 1;
+
+    // खबरें लोड करने का कार्य
+    function loadMoreNews(section) {
+        let data = worldNewsData[section];
+        let page = section === 'international' ? internationalPage : section === 'politics' ? politicsPage : sportsPage;
+        let start = (page - 1) * 5;
+        let end = start + 5;
+        let newsToLoad = data.slice(start, end);
+
+        // HTML में खबरें जोड़ना
+        newsToLoad.forEach(news => {
+            const newsHtml = `<div class="post"><h3>${news.title}</h3><p>${news.content}</p></div>`;
+            document.getElementById(`${section}-news`).insertAdjacentHTML('beforeend', newsHtml);
+        });
+
+        // अगला पेज बढ़ाना
+        if (section === 'international') {
+            internationalPage++;
+        } else if (section === 'politics') {
+            politicsPage++;
+        } else {
+            sportsPage++;
+        }
+
+        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन हटा देना
+        if ((page * 5) >= data.length) {
+            document.getElementById(`load-${section}`).style.display = 'none';
+        }
+    }
+
+    // पेज लोड होते ही पहली बार खबरें लोड करना
+    window.onload = function() {
+        loadMoreNews('international');
+        loadMoreNews('politics');
+        loadMoreNews('sports');
+    };
+</script>
+
+
     <!-- मुख्य पोस्ट यहां दिखाई देंगे -->
+
+
+
 </div>
 
 <!-- "लोड मोर" बटन -->
