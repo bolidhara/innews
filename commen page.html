@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -89,22 +91,25 @@
         let page = 1; // Track the page number
 
         function loadPosts() {
-            $.ajax({
-                url: 'load-posts.php', // PHP file that fetches the posts (you need to create this)
-                type: 'GET',
-                data: { page: page },
-                beforeSend: function() {
-                    $(".load-more").text('खबरें लोड हो रही हैं...');
-                },
-                success: function(response) {
-                    if (response) {
-                        $(".main-content").append(response); // Append new posts to the page
-                        page++; // Increment the page number for the next request
-                    } else {
-                        $(".load-more").text('कोई और खबरें नहीं हैं!');
-                    }
-                }
-            });
+        $.ajax({
+    url: 'https://innews.onrender.com/load-posts.php', // PHP फाइल का पूरा URL
+    type: 'GET',
+    data: { page: page },
+    beforeSend: function() {
+        $(".load-more").text('खबरें लोड हो रही हैं...');
+    },
+    success: function(response) {
+        if (response.trim()) {
+            $(".main-content").append(response); // Append new posts to the page
+            page++; // Increment the page number for the next request
+        } else {
+            $(".load-more").text('कोई और खबरें नहीं हैं!');
+        }
+    },
+    error: function() {
+        $(".load-more").text('लोड करने में समस्या हुई।');
+    }
+});
         }
 
         $(document).ready(function() {
