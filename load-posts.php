@@ -1,25 +1,39 @@
+
+
 <?php
-// Sample code to simulate fetching posts from a database
+// मैन्युअल रूप से डेटा लिखें (प्रोडक्शन में इसे डेटाबेस से लोड करना चाहिए)
 $posts = [
     ["title" => "पहली खबर", "content" => "यह पहली खबर का विवरण है।"],
     ["title" => "दूसरी खबर", "content" => "यह दूसरी खबर का विवरण है।"],
     ["title" => "तीसरी खबर", "content" => "यह तीसरी खबर का विवरण है।"],
-    // Add more posts here for demonstration
+    ["title" => "चौथी खबर", "content" => "यह चौथी खबर का विवरण है।"],
+    ["title" => "पाँचवीं खबर", "content" => "यह पाँचवीं खबर का विवरण है।"],
+    // यहाँ और भी पोस्ट जोड़ सकते हैं
 ];
 
-$page = isset($_GET['page']) ? $_GET['page'] : 1;
-$postsPerPage = 2; // Number of posts to load per page
+// पेज नंबर को AJAX से प्राप्त करें (डिफ़ॉल्ट 1 है)
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // सुनिश्चित करें कि यह एक पूर्णांक है
 
-// Calculate the offset
+// प्रत्येक पेज पर लोड होने वाली पोस्ट की संख्या
+$postsPerPage = 2;
+
+// पेज नंबर के आधार पर ऑफसेट (आधिकारिक पेज) की गणना करें
 $offset = ($page - 1) * $postsPerPage;
+
+// पोस्ट्स को काटकर (slice) पेज के हिसाब से प्राप्त करें
 $postsToDisplay = array_slice($posts, $offset, $postsPerPage);
 
-// Output posts as HTML
-foreach ($postsToDisplay as $post) {
-    echo '<div class="post">';
-    echo '<h2>' . $post['title'] . '</h2>';
-    echo '<p>' . $post['content'] . '</p>';
-    echo '</div>';
+// HTML के रूप में पोस्ट्स को आउटपुट करें
+if (!empty($postsToDisplay)) {
+    foreach ($postsToDisplay as $post) {
+        echo '<div class="post">';
+        echo '<h2>' . htmlspecialchars($post['title']) . '</h2>'; // सुनिश्चित करें कि टाइटल सुरक्षित रूप से प्रदर्शित हो
+        echo '<p>' . htmlspecialchars($post['content']) . '</p>'; // सुनिश्चित करें कि कंटेंट सुरक्षित रूप से प्रदर्शित हो
+        echo '</div>';
+    }
+} else {
+    // अगर कोई पोस्ट नहीं मिलती है तो खाली रेस्पॉन्स भेजें
+    echo '';
 }
 ?>
 
@@ -28,20 +42,3 @@ foreach ($postsToDisplay as $post) {
 
 
 
-
-$.ajax({
-    url: 'http://innews.onrender.com/load-posts.php',  // सही पथ का उपयोग करें
-    type: 'GET',
-    data: { page: page },
-    beforeSend: function() {
-        $(".load-more").text('खबरें लोड हो रही हैं...');
-    },
-    success: function(response) {
-        if (response) {
-            $(".main-content").append(response); // Append new posts to the page
-            page++; // Increment the page number for the next request
-        } else {
-            $(".load-more").text('कोई और खबरें नहीं हैं!');
-        }
-    }
-});
