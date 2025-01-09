@@ -124,6 +124,164 @@
 
 <div class="main-content">
     <!-- मुख्य पोस्ट यहां दिखाई देंगे -->
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारत - IN News</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #d32f2f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .section {
+            margin: 30px auto;
+            max-width: 1200px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            color: #d32f2f;
+        }
+        .post {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .post h3 {
+            font-size: 18px;
+            color: #333;
+        }
+        .post p {
+            font-size: 14px;
+            color: #666;
+        }
+        .load-more-btn {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        .load-more-btn:hover {
+            background-color: #004d99;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>भारत - IN News</h1>
+    </header>
+
+    <div class="section" id="news-section-1">
+        <h2>भारत की प्रमुख खबरें</h2>
+        <div id="news-list-1">
+            <!-- पांच प्रमुख खबरें यहाँ लोड होंगी -->
+        </div>
+        <button class="load-more-btn" onclick="loadMoreNews(1)">लोड और खबरें</button>
+    </div>
+
+    <div class="section" id="news-section-2">
+        <h2>राजनीति</h2>
+        <div id="news-list-2">
+            <!-- पांच राजनीति संबंधित खबरें यहाँ लोड होंगी -->
+        </div>
+        <button class="load-more-btn" onclick="loadMoreNews(2)">लोड और खबरें</button>
+    </div>
+
+    <div class="section" id="news-section-3">
+        <h2>खेल समाचार</h2>
+        <div id="news-list-3">
+            <!-- पांच खेल समाचार यहाँ लोड होंगे -->
+        </div>
+        <button class="load-more-btn" onclick="loadMoreNews(3)">लोड और खबरें</button>
+    </div>
+
+    <script>
+        let newsData = {
+            1: [
+                { title: "भारत में नया बदलाव", content: "यह खबर भारत में हो रहे नए बदलाव के बारे में है।" },
+                { title: "भारत सरकार ने नए कदम उठाए", content: "भारत सरकार ने देश में सुधारों के लिए नए कदम उठाए हैं।" },
+                { title: "नई प्रौद्योगिकी में वृद्धि", content: "भारत में नई प्रौद्योगिकी के क्षेत्र में तेजी से वृद्धि हो रही है।" },
+                { title: "भारतीय उद्योगों का भविष्य", content: "भारतीय उद्योगों के भविष्य में संभावनाएँ और चुनौतियाँ हैं।" },
+                { title: "सशस्त्र बलों की तैयारी", content: "भारत के सशस्त्र बलों की नई तैयारी पर एक रिपोर्ट।" },
+                { title: "कृषि सुधार", content: "भारत में कृषि क्षेत्र में सुधारों के बारे में चर्चा।" },
+                { title: "नवीनतम स्वास्थ्य सुधार", content: "भारत में स्वास्थ्य के क्षेत्र में नवीनतम सुधारों की जानकारी।" }
+            ],
+            2: [
+                { title: "राजनीति में नई योजनाएं", content: "भारत में आगामी चुनावों के लिए नई योजनाएं बनाई जा रही हैं।" },
+                { title: "प्रधानमंत्री की आगामी यात्रा", content: "प्रधानमंत्री अपनी आगामी यात्रा के बारे में चर्चा करेंगे।" },
+                { title: "राजनीतिक सुधारों पर बहस", content: "भारत के राजनीतिक सुधारों पर बहस हो रही है।" },
+                { title: "भारत की संसद में हलचल", content: "भारत की संसद में नए विधेयकों पर चर्चा की जा रही है।" },
+                { title: "राजनीति में महिला शक्ति", content: "भारत की राजनीति में महिलाओं का बढ़ता प्रभाव।" }
+            ],
+            3: [
+                { title: "भारत और पाकिस्तान का क्रिकेट मैच", content: "भारत और पाकिस्तान के बीच होने वाले आगामी क्रिकेट मैच पर चर्चा।" },
+                { title: "नई ओलंपिक रणनीतियाँ", content: "भारत की ओलंपिक रणनीतियाँ और संभावनाएँ।" },
+                { title: "भारतीय फुटबॉल टीम की तैयारी", content: "भारतीय फुटबॉल टीम की आगामी प्रतियोगिताओं के लिए तैयारी।" },
+                { title: "खिलाड़ियों की सफलता की कहानी", content: "भारत के खिलाड़ियों द्वारा खेल में हासिल की गई सफलता।" },
+                { title: "राष्ट्रीय खेल पुरस्कार समारोह", content: "भारत में आयोजित राष्ट्रीय खेल पुरस्कार समारोह की रिपोर्ट।" }
+            ]
+        };
+
+        let displayedNews = {
+            1: 5,
+            2: 5,
+            3: 5
+        };
+
+        function loadMoreNews(section) {
+            const newsList = document.getElementById(`news-list-${section}`);
+            const sectionData = newsData[section];
+            const startIndex = displayedNews[section];
+            const endIndex = startIndex + 5;
+            const newsToDisplay = sectionData.slice(startIndex, endIndex);
+
+            newsToDisplay.forEach(news => {
+                const newsDiv = document.createElement('div');
+                newsDiv.classList.add('post');
+                newsDiv.innerHTML = `<h3>${news.title}</h3><p>${news.content}</p>`;
+                newsList.appendChild(newsDiv);
+            });
+
+            displayedNews[section] = endIndex;
+
+            // Hide the button if no more news is left
+            if (displayedNews[section] >= sectionData.length) {
+                document.querySelector(`#news-section-${section} .load-more-btn`).style.display = 'none';
+            }
+        }
+
+        // Initial loading of news for each section
+        loadMoreNews(1);
+        loadMoreNews(2);
+        loadMoreNews(3);
+    </script>
+
+
+
+
+
+
+
+
+
 </div>
 
 <!-- "लोड मोर" बटन -->
