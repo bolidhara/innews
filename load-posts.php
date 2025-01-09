@@ -30,7 +30,7 @@ foreach ($postsToDisplay as $post) {
 
 
 $.ajax({
-    url: 'http://example.com/load-posts.php',  // सही पथ का उपयोग करें
+    url: 'http://innews.onrender.com/load-posts.php',  // सही पथ का उपयोग करें
     type: 'GET',
     data: { page: page },
     beforeSend: function() {
