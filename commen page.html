@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -53,19 +51,6 @@
             font-size: 16px;
             line-height: 1.6;
         }
-        .navigation {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .navigation a {
-            background-color: #ffeb3b;
-            color: black;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-size: 16px;
-            margin: 0 10px;
-            border-radius: 5px;
-        }
         .load-more {
             background-color: #2196f3;
             color: white;
@@ -81,9 +66,8 @@
             color: white;
             padding: 20px;
             text-align: center;
-            position: fixed;
+            position: relative; /* Changed to relative */
             width: 100%;
-            bottom: 0;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -91,31 +75,33 @@
         let page = 1; // Track the page number
 
         function loadPosts() {
-        $.ajax({
-    url: 'https://innews.onrender.com/load-posts.php', // PHP फाइल का पूरा URL
-    type: 'GET',
-    data: { page: page },
-    beforeSend: function() {
-        $(".load-more").text('खबरें लोड हो रही हैं...');
-    },
-    success: function(response) {
-        if (response.trim()) {
-            $(".main-content").append(response); // Append new posts to the page
-            page++; // Increment the page number for the next request
-        } else {
-            $(".load-more").text('कोई और खबरें नहीं हैं!');
-        }
-    },
-    error: function() {
-        $(".load-more").text('लोड करने में समस्या हुई।');
-    }
-});
+            $.ajax({
+                url: 'https://innews.onrender.com/load-posts.php', // PHP फाइल का पूरा URL
+                type: 'GET',
+                data: { page: page },
+                beforeSend: function() {
+                    $(".load-more").text('खबरें लोड हो रही हैं...');
+                },
+                success: function(response) {
+                    if (response.trim()) {
+                        $(".main-content").append(response); // Append new posts to the page
+                        page++; // Increment the page number for the next request
+                    } else {
+                        $(".load-more").text('कोई और खबरें नहीं हैं!');
+                        $(".load-more").hide(); // Hide the button when no more posts are available
+                    }
+                },
+                error: function() {
+                    $(".load-more").text('लोड करने में समस्या हुई।');
+                }
+            });
         }
 
         $(document).ready(function() {
             loadPosts(); // Load the first set of posts initially
 
-            $(".load-more").on('click', function() {
+            $(".load-more").on('click', function(e) {
+                e.preventDefault(); // Prevent default anchor action
                 loadPosts(); // Load more posts when the button is clicked
             });
         });
