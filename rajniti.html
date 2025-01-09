@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>न्यूज़ ब्लॉग पोस्ट</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+        nav {
+            background-color: #ffeb3b;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .post {
+            margin-bottom: 40px;
+        }
+        .post h2 {
+            color: #d32f2f;
+        }
+        .post p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .load-more {
+            background-color: #2196f3;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            margin: 30px auto;
+            text-align: center;
+        }
+        footer {
+            background-color: #d32f2f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative; /* Changed to relative */
+            width: 100%;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let page = 1; // Track the page number
+
+        function loadPosts() {
+            $.ajax({
+                url: 'https://innews/load-posts.php', // PHP फाइल का पूरा URL
+                type: 'GET',
+                data: { page: page },
+                beforeSend: function() {
+                    $(".load-more").text('खबरें लोड हो रही हैं...');
+                },
+                success: function(response) {
+                    if (response.trim()) {
+                        $(".main-content").append(response); // Append new posts to the page
+                        page++; // Increment the page number for the next request
+                    } else {
+                        $(".load-more").text('कोई और खबरें नहीं हैं!');
+                        $(".load-more").hide(); // Hide the button when no more posts are available
+                    }
+                },
+                error: function() {
+                    $(".load-more").text('लोड करने में समस्या हुई।');
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            loadPosts(); // Load the first set of posts initially
+
+            $(".load-more").on('click', function(e) {
+                e.preventDefault(); // Prevent default anchor action
+                loadPosts(); // Load more posts when the button is clicked
+            });
+        });
+    </script>
+</head>
+<body>
+
+<header>
+    <a href="#">न्यूज़ वेबसाइट</a>
+</header>
+
+<nav>
+    <a href="#">होम</a>
+    <a href="#">ब्रेकिंग न्यूज</a>
+    <a href="#">मुख्य समाचार</a>
+    <a href="#">वीडियो</a>
+    <a href="#">फोटो गैलरी</a>
+    <a href="#">लाइव न्यूज</a>
+</nav>
+
+<div class="main-content">
+    <!-- मुख्य पोस्ट यहां दिखाई देंगे -->
+</div>
+
+<!-- "लोड मोर" बटन -->
+<a href="#" class="load-more">और खबरें लोड करें</a>
+
+<footer>
+    <p>&copy; 2025 IN News | सभी अधिकार सुरक्षित</p>
+</footer>
+
+</body>
+</htm
