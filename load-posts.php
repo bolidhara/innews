@@ -1,44 +1,38 @@
-
-
 <?php
-// मैन्युअल रूप से डेटा लिखें (प्रोडक्शन में इसे डेटाबेस से लोड करना चाहिए)
+// Sample data (replace with real database query in production)
 $posts = [
     ["title" => "पहली खबर", "content" => "यह पहली खबर का विवरण है।"],
     ["title" => "दूसरी खबर", "content" => "यह दूसरी खबर का विवरण है।"],
     ["title" => "तीसरी खबर", "content" => "यह तीसरी खबर का विवरण है।"],
     ["title" => "चौथी खबर", "content" => "यह चौथी खबर का विवरण है।"],
     ["title" => "पाँचवीं खबर", "content" => "यह पाँचवीं खबर का विवरण है।"],
-    // यहाँ और भी पोस्ट जोड़ सकते हैं
+    // Add more posts here for demonstration
 ];
 
-// पेज नंबर को AJAX से प्राप्त करें (डिफ़ॉल्ट 1 है)
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // सुनिश्चित करें कि यह एक पूर्णांक है
+// Get the page number from the AJAX request (default to 1)
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1; // Ensure this is an integer
 
-// प्रत्येक पेज पर लोड होने वाली पोस्ट की संख्या
+// Number of posts to load per page
 $postsPerPage = 2;
 
-// पेज नंबर के आधार पर ऑफसेट (आधिकारिक पेज) की गणना करें
+// Calculate the offset based on the page number
 $offset = ($page - 1) * $postsPerPage;
 
-// पोस्ट्स को काटकर (slice) पेज के हिसाब से प्राप्त करें
+// Slice the posts array to get the posts for the current page
 $postsToDisplay = array_slice($posts, $offset, $postsPerPage);
 
-// HTML के रूप में पोस्ट्स को आउटपुट करें
+// Output posts as HTML
 if (!empty($postsToDisplay)) {
     foreach ($postsToDisplay as $post) {
         echo '<div class="post">';
-        echo '<h2>' . htmlspecialchars($post['title']) . '</h2>'; // सुनिश्चित करें कि टाइटल सुरक्षित रूप से प्रदर्शित हो
-        echo '<p>' . htmlspecialchars($post['content']) . '</p>'; // सुनिश्चित करें कि कंटेंट सुरक्षित रूप से प्रदर्शित हो
+        echo '<h2>' . htmlspecialchars($post['title']) . '</h2>'; // Ensure title is displayed safely
+        echo '<p>' . htmlspecialchars($post['content']) . '</p>'; // Ensure content is displayed safely
         echo '</div>';
     }
 } else {
-    // अगर कोई पोस्ट नहीं मिलती है तो खाली रेस्पॉन्स भेजें
+    // If no posts are found, send an empty response
     echo '';
 }
 ?>
-
-
-
-
 
 
