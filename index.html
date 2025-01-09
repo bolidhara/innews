@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IN Live - ताज़ा खबरें, राष्ट्रीय और अंतरराष्ट्रीय समाचार, खेल, मनोरंजन और बहुत कुछ।">
+    <title>IN Live - ताज़ा खबरें</title>
+    <link rel="stylesheet" href="styles.css"> <!-- बाहरी CSS के लिए लिंक -->
+    <style>
+        /* बेसिक स्टाइल */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #dc3545; /* बीबीसी रेड */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffcc00; /* हाइलाइट रंग */
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .search-bar input {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+        }
+        .search-bar button {
+            padding: 6px 12px;
+            font-size: 16px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #333;
+        }
+        .search-bar button:hover {
+            background-color: #ff9900;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <!-- Logo -->
+        <div class="logo">IN Live</div>
+        
+        <!-- Navigation Menu -->
+        <nav>
+            <ul>
+                <li><a href="#">होम</a></li>
+                <li><a href="#">भारत</a></li>
+                <li><a href="#">विश्व</a></li>
+                <li><a href="#">खेल</a></li>
+                <li><a href="#">मनोरंजन</a></li>
+                <li><a href="#">विज्ञान</a></li>
+                <li><a href="#">स्वास्थ्य</a></li>
+                <li><a href="#">संपादकीय</a></li>
+            </ul>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="खोजें...">
+            <button>खोज</button>
+        </div>
+    </header>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IN Live - ताज़ा खबरें, राष्ट्रीय और अंतरराष्ट्रीय समाचार, खेल, मनोरंजन और बहुत कुछ।">
+    <title>IN Live - ताज़ा खबरें</title>
+    <link rel="stylesheet" href="styles.css"> <!-- बाहरी CSS के लिए लिंक -->
+    <style>
+        /* चरण 1 का स्टाइल */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #dc3545; /* बीबीसी रेड */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .search-bar input {
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+        }
+        .search-bar button {
+            padding: 6px 12px;
+            font-size: 16px;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* चरण 2 का स्टाइल */
+        .breaking-news {
+            background-color: #ffcc00;
+            color: #333;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .main-news {
+            padding: 20px;
+            background-color: white;
+        }
+        .main-news h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .news-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .news-card img {
+            width: 100%;
+            height: auto;
+        }
+        .news-card .news-content {
+            padding: 15px;
+        }
+        .news-card h3 {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+        }
+        .news-card p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .news-card a {
+            text-decoration: none;
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    
+    <!-- Breaking News Section -->
+    <div class="breaking-news">ब्रेकिंग न्यूज़: भारतीय राजनीति में बड़ा बदलाव, जानिए पूरी खबर!</div>
+
+    <!-- Main News Section -->
+    <div class="main-news">
+        <h1>ताज़ा और प्रमुख खबरें</h1>
+        <div class="news-grid">
+            <!-- News Card 1 -->
+            <div class="news-card">
+                <img src="https://via.placeholder.com/300x200" alt="खबर">
+                <div class="news-content">
+                    <h3>भारत की अर्थव्यवस्था पर बड़ा असर</h3>
+                    <p>भारतीय अर्थव्यवस्था में बड़ा बदलाव आने की संभावना है।</p>
+                    <a href="#">और पढ़ें...</a>
+                </div>
+            </div>
+            <!-- News Card 2 -->
+            <div class="news-card">
+                <img src="https://via.placeholder.com/300x200" alt="खबर">
+                <div class="news-content">
+                    <h3>क्रिकेट में भारत की जीत</h3>
+                    <p>भारत ने शानदार प्रदर्शन कर सीरीज जीत ली।</p>
+                    <a href="#">और पढ़ें...</a>
+                </div>
+            </div>
+            <!-- News Card 3 -->
+            <div class="news-card">
+                <img src="https://via.placeholder.com/300x200" alt="खबर">
+                <div class="news-content">
+                    <h3>फिल्म इंडस्ट्री में नई शुरुआत</h3>
+                    <p>मनोरंजन जगत में नए प्रोजेक्ट की घोषणा।</p>
+                    <a href="#">और पढ़ें...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IN Live - ताज़ा खबरें, राष्ट्रीय और अंतरराष्ट्रीय समाचार, खेल, मनोरंजन और बहुत कुछ।">
+    <title>IN Live - ताज़ा खबरें</title>
+    <link rel="stylesheet" href="styles.css"> <!-- बाहरी CSS के लिए लिंक -->
+    <style>
+        /* चरण 3 का स्टाइल */
+        .video-gallery, .photo-gallery {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .video-gallery h2, .photo-gallery h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        .video-grid, .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .video-card, .photo-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .video-card iframe {
+            width: 100%;
+            height: 200px;
+        }
+        .video-card .video-info, .photo-card .photo-info {
+            padding: 15px;
+            background-color: white;
+        }
+        .video-card h3, .photo-card h3 {
+            font-size: 18px;
+            margin: 0 0 10px 0;
+        }
+        .photo-card img {
+            width: 100%;
+            height: auto;
+        }
+        .photo-card a, .video-card a {
+            text-decoration: none;
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- पहले के चरण का कोड (Header, Breaking News, Main News) यहां जोड़ा जाएगा -->
+
+    <!-- Video Gallery Section -->
+    <div class="video-gallery">
+        <h2>वीडियो गैलरी</h2>
+        <div class="video-grid">
+            <!-- Video 1 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video 1" frameborder="0" allowfullscreen></iframe>
+                <div class="video-info">
+                    <h3>भारत की राजनीति पर विशेष</h3>
+                    <a href="#">और देखें...</a>
+                </div>
+            </div>
+            <!-- Video 2 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/3fumBcKC6RE" title="Video 2" frameborder="0" allowfullscreen></iframe>
+                <div class="video-info">
+                    <h3>क्रिकेट का शानदार प्रदर्शन</h3>
+                    <a href="#">और देखें...</a>
+                </div>
+            </div>
+            <!-- Video 3 -->
+            <div class="video-card">
+                <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="Video 3" frameborder="0" allowfullscreen></iframe>
+                <div class="video-info">
+                    <h3>मनोरंजन की दुनिया में नया धमाका</h3>
+                    <a href="#">और देखें...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo Gallery Section -->
+    <div class="photo-gallery">
+        <h2>फोटो गैलरी</h2>
+        <div class="photo-grid">
+            <!-- Photo 1 -->
+            <div class="photo-card">
+                <img src="https://via.placeholder.com/300x200" alt="Photo 1">
+                <div class="photo-info">
+                    <h3>भारत की सांस्कृतिक धरोहर</h3>
+                    <a href="#">और देखें...</a>
+                </div>
+            </div>
+            <!-- Photo 2 -->
+            <div class="photo-card">
+                <img src="https://via.placeholder.com/300x200" alt="Photo 2">
+                <div class="photo-info">
+                    <h3>क्रिकेट टीम का उत्साह</h3>
+                    <a href="#">और देखें...</a>
+                </div>
+            </div>
+            <!-- Photo 3 -->
+            <div class="photo-card">
+                <img src="https://via.placeholder.com/300x200" alt="Photo 3">
+                <div class="photo-info">
+                    <h3>प्राकृतिक सुंदरता की झलक</h3>
+                    <a href="#">और देखें...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IN Live - ताज़ा खबरें, राष्ट्रीय और अंतरराष्ट्रीय समाचार, खेल, मनोरंजन और बहुत कुछ।">
+    <title>IN Live - ताज़ा खबरें</title>
+    <link rel="stylesheet" href="styles.css"> <!-- बाहरी CSS के लिए लिंक -->
+    <style>
+        /* चरण 4 का स्टाइल */
+        .live-news-section {
+            padding: 20px;
+            background-color: #fefefe;
+            border-top: 4px solid #dc3545;
+        }
+        .live-news-section h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #dc3545;
+        }
+        .live-news-ticker {
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background-color: #ffcc00;
+            padding: 10px;
+            border-radius: 4px;
+            position: relative;
+        }
+        .live-news-ticker span {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            animation: ticker 10s linear infinite;
+            white-space: nowrap;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .live-updates {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .update-card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .update-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .update-card p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .update-card time {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .multimedia-section {
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .multimedia-section h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #dc3545;
+        }
+        .multimedia-options {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .multimedia-option {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .multimedia-option img {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .multimedia-option a {
+            text-decoration: none;
+            font-size: 16px;
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- पहले के चरण का कोड (Header, Breaking News, Main News, Video & Photo Gallery) यहां जोड़ा जाएगा -->
+
+    <!-- Live News Section -->
+    <div class="live-news-section">
+        <h2>लाइव न्यूज़</h2>
+        <!-- Live News Ticker -->
+        <div class="live-news-ticker">
+            <span>ब्रेकिंग: भारतीय क्रिकेट टीम ने सीरीज जीती | वित्तीय बजट पर बड़ी घोषणाएं | वैश्विक जलवायु शिखर सम्मेलन शुरू...</span>
+        </div>
+        <!-- Live Updates -->
+        <div class="live-updates">
+            <!-- Update 1 -->
+            <div class="update-card">
+                <h3>भारत ने अंतरिक्ष मिशन लॉन्च किया</h3>
+                <p>भारत ने चंद्रयान-4 मिशन को सफलतापूर्वक लॉन्च किया।</p>
+                <time>10:30 AM</time>
+            </div>
+            <!-- Update 2 -->
+            <div class="update-card">
+                <h3>विश्व बैंक की नई रिपोर्ट</h3>
+                <p>विश्व बैंक ने भारत की अर्थव्यवस्था पर सकारात्मक रिपोर्ट जारी की।</p>
+                <time>12:00 PM</time>
+            </div>
+            <!-- Update 3 -->
+            <div class="update-card">
+                <h3>क्रिकेट में भारत की बड़ी जीत</h3>
+                <p>भारत ने ऑस्ट्रेलिया को 5 विकेट से हराया।</p>
+                <time>02:15 PM</time>
+            </div>
+        </div>
+    </div>
+
+    <!-- Multimedia Section -->
+    <div class="multimedia-section">
+        <h2>मल्टीमीडिया</h2>
+        <div class="multimedia-options">
+            <!-- Option 1 -->
+            <div class="multimedia-option">
+                <img src="https://via.placeholder.com/100" alt="पॉडकास्ट">
+                <h3>पॉडकास्ट</h3>
+                <a href="#">सुनें</a>
+            </div>
+            <!-- Option 2 -->
+            <div class="multimedia-option">
+                <img src="https://via.placeholder.com/100" alt="वीडियो">
+                <h3>वीडियो</h3>
+                <a href="#">देखें</a>
+            </div>
+            <!-- Option 3 -->
+            <div class="multimedia-option">
+                <img src="https://via.placeholder.com/100" alt="फोटो">
+                <h3>फोटो गैलरी</h3>
+                <a href="#">देखें</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IN Live - ताज़ा खबरें, राष्ट्रीय और अंतरराष्ट्रीय समाचार, खेल, मनोरंजन और बहुत कुछ।">
+    <title>IN Live - ताज़ा खबरें</title>
+    <link rel="stylesheet" href="styles.css"> <!-- बाहरी CSS के लिए लिंक -->
+    <style>
+        /* चरण 5 का स्टाइल */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        footer .footer-top {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: 20px;
+        }
+        .footer-column {
+            width: 30%;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #ffcc00;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-column ul li {
+            margin: 5px 0;
+        }
+        .footer-column ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        .footer-column ul li a:hover {
+            color: #ffcc00;
+        }
+        footer .footer-bottom {
+            text-align: center;
+            font-size: 14px;
+            color: #ccc;
+        }
+        footer .footer-bottom a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+        footer .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- पहले के चरण का कोड (Header, Breaking News, Main News, Video & Photo Gallery, Live News, Multimedia Section) यहां जोड़ा जाएगा -->
+
+    <!-- Footer Section -->
+    <footer>
+        <!-- Footer Top Section -->
+        <div class="footer-top">
+            <!-- Column 1: About IN Live -->
+            <div class="footer-column">
+                <h3>IN Live के बारे में</h3>
+                <p>IN Live एक विश्वसनीय और अपडेटेड न्यूज़ पोर्टल है जो आपको ताज़ा खबरें, विश्लेषण, और विशेष रिपोर्ट प्रदान करता है।</p>
+            </div>
+            <!-- Column 2: Quick Links -->
+            <div class="footer-column">
+                <h3>त्वरित लिंक</h3>
+                <ul>
+                    <li><a href="#">हमारे बारे में</a></li>
+                    <li><a href="#">संपर्क करें</a></li>
+                    <li><a href="#">गोपनीयता नीति</a></li>
+                    <li><a href="#">नियम और शर्तें</a></li>
+                </ul>
+            </div>
+            <!-- Column 3: Follow Us -->
+            <div class="footer-column">
+                <h3>हमें फॉलो करें</h3>
+                <ul>
+                    <li><a href="#">फेसबुक</a></li>
+                    <li><a href="#">ट्विटर</a></li>
+                    <li><a href="#">यूट्यूब</a></li>
+                    <li><a href="#">इंस्टाग्राम</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 IN Live. सभी अधिकार सुरक्षित। <a href="#">संपर्क करें</a> | <a href="#">गोपनीयता नीति</a></p>
+        </div>
+    </footer>
+</body>
+</html>
