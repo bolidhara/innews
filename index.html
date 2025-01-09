@@ -699,3 +699,79 @@
     </footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>न्यूज़ ब्लॉग पोस्ट</title>
+    <style>
+        /* CSS styles here */
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<header>
+    <a href="#">न्यूज़ वेबसाइट</a>
+</header>
+
+
+<script>
+    let page = 1; // Track the page number
+
+    function loadPosts() {
+        $.ajax({
+            url: 'http://innews.onrender.com/load-posts.php', // PHP file that fetches the posts (make sure path is correct)
+            type: 'GET',
+            data: { page: page },
+            beforeSend: function() {
+                $(".load-more").text('खबरें लोड हो रही हैं...');
+            },
+            success: function(response) {
+                if (response) {
+                    $(".main-content").append(response); // Append new posts to the page
+                    page++; // Increment the page number for the next request
+                } else {
+                    $(".load-more").text('कोई और खबरें नहीं हैं!');
+                }
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        loadPosts(); // Load the first set of posts initially
+
+        $(".load-more").on('click', function(e) {
+            e.preventDefault();
+            loadPosts(); // Load more posts when the button is clicked
+        });
+    });
+</script>
+
+</body>
+</html>
