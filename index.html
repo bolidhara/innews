@@ -780,3 +780,116 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>मुख्य पृष्ठ</title>
+
+    <!-- उत्तरदायी डिज़ाइन के लिए CSS -->
+    <style>
+        /* यह CSS मोबाइल, टैबलेट और डेस्कटॉप के लिए उत्तरदायी डिज़ाइन को सक्षम करता है */
+
+        /* डिफ़ॉल्ट स्टाइल */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* मुख्य पृष्ठ में साइडबार, कंटेंट और फुटर जैसे हिस्से हो सकते हैं */
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* छोटे स्क्रीन के लिए स्टाइल */
+        @media (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+            header h1 {
+                font-size: 24px;
+            }
+            nav ul {
+                padding-left: 0;
+                list-style: none;
+                text-align: center;
+            }
+            nav ul li {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* टैबलेट स्क्रीन के लिए स्टाइल */
+        @media (min-width: 601px) and (max-width: 1024px) {
+            .container {
+                width: 85%;
+            }
+            header h1 {
+                font-size: 28px;
+            }
+        }
+
+        /* डेस्कटॉप स्क्रीन के लिए स्टाइल */
+        @media (min-width: 1025px) {
+            .container {
+                width: 80%;
+            }
+            header h1 {
+                font-size: 36px;
+            }
+        }
+
+        /* फ़ुटर */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- आपका मुख्य पृष्ठ सामग्री यहां होगी -->
+
+    <div class="container">
+        <!-- उदाहरण के लिए कुछ कंटेंट -->
+        <header>
+            <h1>वेबसाइट का मुख्य पृष्ठ</h1>
+        </header>
+
+        <footer>
+            <p>&copy; 2025 आपकी वेबसाइट। सभी अधिकार सुरक्षित।</p>
+        </footer>
+    </div>
+
+    <!-- यह कोड स्क्रीन के आकार के अनुसार सही ढंग से वेबसाइट को फिट करेगा -->
+</body>
+</html>
