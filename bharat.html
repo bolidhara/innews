@@ -236,4 +236,96 @@
 </footer>
 
 </body>
-</htm
+</htm>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Website</title>
+    <style>
+        .news-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .post {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .post img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .post h2 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .post p {
+            font-size: 16px;
+        }
+
+        .post .date {
+            color: gray;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>News Website</h1>
+    </header>
+
+    <div class="news-container" id="news-container">
+        <!-- News will be loaded here -->
+    </div>
+
+    <script>
+        // Google Sheets JSON API URL
+        const apiUrl='https://script.google.com/macros/s/AKfycbxekmUhTHDVAl7W7iOS1MCvwwe8vejskY4J-jR927A9BtzzzM86zKvDt67tMROCLo8sOg/exec'; // Replace with your JSON API link
+
+        // Fetch JSON Data from Google Sheets
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('news-container');
+                data.forEach(news => {
+                    const newsHtml = `
+                        <div class="post">
+                            <h2>${news.title}</h2>
+                            <p class="date">${new Date(news.date).toLocaleString()}</p>
+                            <img src="${news.image}" alt="${news.title}">
+                            <p>${news.content}</p>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', newsHtml);
+                });
+            })
+            .catch(error => console.error('Error fetching the data:', error));
+    </script>
+</body>
+</html>
