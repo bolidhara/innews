@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>फोटो गैलरी</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .gallery-section {
+            margin-top: 20px;
+        }
+
+        .gallery-section h2 {
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .gallery-item {
+            width: 100%;
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .caption {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            color: #0066cc;
+            padding: 10px;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .pagination span {
+            padding: 10px;
+            margin: 0 5px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 28px;
+            }
+
+            .pagination a {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .gallery-item {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- हेडर -->
+    <header>
+        <div class="container">
+            <h1>समाचार वेबसाइट</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">मुख्य पृष्ठ</a></li>
+                    <li><a href="/archive">आर्काइव</a></li>
+                    <li><a href="/photo-gallery">फोटो गैलरी</a></li>
+                    <li><a href="/contact">संपर्क करें</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- फोटो गैलरी सेक्शन -->
+    <div class="container">
+        <div class="gallery-section">
+            <h2>फोटो गैलरी</h2>
+            <div id="photo-gallery" class="gallery">
+                <!-- यहां फोटो लोड होंगे -->
+            </div>
+
+            <!-- पेजनेशन -->
+            <div id="pagination" class="pagination">
+                <a href="#" id="previous-page" onclick="loadPreviousPage()">पिछला</a>
+                <span id="page-number">पेज 1</span>
+                <a href="#" id="next-page" onclick="loadNextPage()">अगला</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- फूटर -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 समाचार वेबसाइट. सर्वाधिकार सुरक्षित.</p>
+        </div>
+    </footer>
+
+    <!-- जावास्क्रिप्ट कोड -->
+    <script>
+        let galleryPage = 1;
+        const photosPerPage = 6;
+
+        let photoGalleryData = [
+            {
+                image: "photo1.jpg",
+                title: "फोटो 1",
+                description: "यह एक शानदार दृश्य है।"
+            },
+            {
+                image: "photo2.jpg",
+                title: "फोटो 2",
+                description: "यह एक सुंदर सूर्यास्त की तस्वीर है।"
+            },
+            {
+                image: "photo3.jpg",
+                title: "फोटो 3",
+                description: "यह पर्वत की एक अद्भुत छवि है।"
+            },
+            {
+                image: "photo4.jpg",
+                title: "फोटो 4",
+                description: "यह एक नीला आकाश और हरियाली की छवि है।"
+            },
+            {
+                image: "photo5.jpg",
+                title: "फोटो 5",
+                description: "यह एक नदी का शांत दृश्य है।"
+            },
+            {
+                image: "photo6.jpg",
+                title: "फोटो 6",
+                description: "यह एक शहर की रात्रि की छवि है।"
+            },
+            {
+                image: "photo7.jpg",
+                title: "फोटो 7",
+                description: "यह एक सुंदर समुद्र तट का दृश्य है।"
+            },
+            {
+                image: "photo8.jpg",
+                title: "फोटो 8",
+                description: "यह एक विशाल पर्वत श्रृंखला की छवि है।"
+            },
+            {
+                image: "photo9.jpg",
+                title: "फोटो 9",
+                description: "यह एक दृश्य है जो एक उद्यान का आनंद देता है।"
+            },
+            {
+                image: "photo10.jpg",
+                title: "फोटो 10",
+                description: "यह एक हल्की धुंध वाली सुबह की तस्वीर है।"
+            },
+            {
+                image: "photo11.jpg",
+                title: "फोटो 11",
+                description: "यह एक शांतिपूर्ण झील का दृश्य है।"
+            },
+            {
+                image: "photo12.jpg",
+                title: "फोटो 12",
+                description: "यह एक महल की छवि है, जो इतिहास से जुड़ी है।"
+            },
+        ];
+
+        function loadGalleryImages(page) {
+            let start = (page - 1) * photosPerPage;
+            let end = start + photosPerPage;
+            let photosToLoad = photoGalleryData.slice(start, end);
+
+            document.getElementById("photo-gallery").innerHTML = '';
+            photosToLoad.forEach(photo => {
+                const photoHtml = `
+                    <div class="gallery-item">
+                        <img src="${photo.image}" alt="${photo.title}">
+                        <div class="caption">
+                            <h3>${photo.title}</h3>
+                            <p>${photo.description}</p>
+                        </div>
+                    </div>
+                `;
+                document.getElementById("photo-gallery").insertAdjacentHTML('beforeend', photoHtml);
+            });
+
+            document.getElementById("page-number").innerText = `पेज ${page}`;
+
+            if (page === 1) {
+                document.getElementById("previous-page").style.display = 'none';
+            } else {
+                document.getElementById("previous-page").style.display = 'inline-block';
+            }
+
+            if (end >= photoGalleryData.length) {
+                document.getElementById("next-page").style.display = 'none';
+            } else {
+                document.getElementById("next-page").style.display = 'inline-block';
+            }
+        }
+
+        function loadNextPage() {
+            galleryPage++;
+            loadGalleryImages(galleryPage);
+        }
+
+        function loadPreviousPage() {
+            galleryPage--;
+            loadGalleryImages(galleryPage);
+        }
+
+        window.onload = function() {
+            loadGalleryImages(galleryPage);
+        };
+    </script>
+
+</body>
+</html>
