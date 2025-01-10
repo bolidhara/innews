@@ -329,3 +329,56 @@
     </script>
 </body>
 </html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News from Google Sheets</title>
+    <style>
+        .news-container { width: 80%; margin: 20px auto; font-family: Arial, sans-serif; }
+        .post { background: #f9f9f9; margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .post img { max-width: 100%; height: auto; }
+        .post h2 { font-size: 24px; margin: 10px 0; }
+        .post p { font-size: 16px; }
+        .post .date { color: gray; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>News Website</h1>
+    </header>
+
+    <div class="news-container" id="news-container">
+        <!-- News will be loaded here -->
+    </div>
+
+    <script>
+        // JSON API URL from Google Sheets
+        const apiUrl = 'https://spreadsheets.google.com/feeds/list/18piCUYC_LAg6lNzzqdydjt0td1lrXY7iZu3COYQDdWM/1/public/values?alt=json';
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const entries = data.feed.entry;
+                const container = document.getElementById('news-container');
+                entries.forEach(entry => {
+                    const newsHtml = `
+                        <div class="post">
+                            <h2>${entry.gsx$title.$t}</h2>
+                            <p class="date">${new Date(entry.gsx$date.$t).toLocaleString()}</p>
+                            <img src="${entry.gsx$imageurl.$t}" alt="${entry.gsx$title.$t}">
+                            <p>${entry.gsx$content.$t}</p>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', newsHtml);
+                });
+            })
+            .catch(error => console.error('Error fetching the data:', error));
+    </script>
+</body>
+</html>
