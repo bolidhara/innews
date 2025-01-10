@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>न्यूज़ ब्लॉग पोस्ट</title>
+    <title>न्यूज़ वेबसाइट</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,45 +11,32 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-        header {
-            background-color: #d32f2f;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        header a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            font-size: 18px;
-        }
-        nav {
-            background-color: #ffeb3b;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: black;
-            text-decoration: none;
-            padding: 10px 20px;
-            font-size: 18px;
-        }
-        .main-content {
-            max-width: 1200px;
+        .news-container {
+            width: 80%;
             margin: 20px auto;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
         }
         .post {
-            margin-bottom: 40px;
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .post img {
+            max-width: 100%;
+            height: auto;
         }
         .post h2 {
-            color: #d32f2f;
+            font-size: 24px;
+            margin: 10px 0;
         }
         .post p {
             font-size: 16px;
-            line-height: 1.6;
+        }
+        .post .date {
+            color: gray;
+            font-size: 12px;
         }
         .load-more {
             background-color: #2196f3;
@@ -61,271 +48,72 @@
             margin: 30px auto;
             text-align: center;
         }
-        footer {
-            background-color: #d32f2f;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            position: relative; /* Changed to relative */
-            width: 100%;
-        }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        let page = 1; // Track the page number
-
-        function loadPosts() {
-            $.ajax({
-                url: 'https://innews/load-posts.php', // PHP फाइल का पूरा URL
-                type: 'GET',
-                data: { page: page },
-                beforeSend: function() {
-                    $(".load-more").text('खबरें लोड हो रही हैं...');
-                },
-                success: function(response) {
-                    if (response.trim()) {
-                        $(".main-content").append(response); // Append new posts to the page
-                        page++; // Increment the page number for the next request
-                    } else {
-                        $(".load-more").text('कोई और खबरें नहीं हैं!');
-                        $(".load-more").hide(); // Hide the button when no more posts are available
-                    }
-                },
-                error: function() {
-                    $(".load-more").text('लोड करने में समस्या हुई।');
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            loadPosts(); // Load the first set of posts initially
-
-            $(".load-more").on('click', function(e) {
-                e.preventDefault(); // Prevent default anchor action
-                loadPosts(); // Load more posts when the button is clicked
-            });
-        });
-    </script>
-</head>
-<body>
-
-<header>
-    <a href="#">न्यूज़ वेबसाइट</a>
-</header>
-
-<nav>
-    <a href="#">होम</a>
-    <a href="break news.html">ब्रेकिंग न्यूज</a>
-    <a href="#">मुख्य समाचार</a>
-    <a href="#">वीडियो</a>
-    <a href="photo grid.html">फोटो गैलरी</a>
-    <a href="#">लाइव न्यूज</a>
-</nav>
-
-<div class="main-content">
-    <!-- मुख्य पोस्ट यहां दिखाई देंगे -->
-
-
-
-<!-- भारत समाचार सेक्शन -->
-<div class="news-section">
-    <h2>भारत समाचार</h2>
-    <div id="india-news" class="news-list">
-        <!-- यहां खबरें लोड होंगी -->
-    </div>
-    <a href="#" class="load-more" id="load-india" onclick="loadMoreNews()">और खबरें लोड करें</a>
-</div>
-
-<script>
-    let indiaPage = 1;  // पेज नंबर
-    let indiaNewsData = [
-        // मैनुअली खबरें डाली जाएंगी
-
-        {
-            title: "भारत में बड़ा कदम",
-            content: "भारत सरकार ने एक नया कानून पास किया है...",
-            image: "india1.jpg",
-            date: "2025-01-09T10:00:00Z",
-            shareUrl: "https://facebook.com",
-            shareUrl: "https://whatsapp.com" // URL को बदलें
-        },
-        {
-            title: "भारत का नया अभियान",
-            content: "प्रधानमंत्री ने एक नई योजना का उद्घाटन किया है...",
-            image: "india2.jpg",
-            date: "2025-01-08T14:30:00Z",
-            shareUrl: "https://facebook.com",
-            shareUrl: "https://whatsapp.com" // URL को बदलें
-        },
-        // अन्य खबरें यहाँ डालें
-    ];
-
-    // अगर 100 से अधिक खबरें हो जाएं तो आर्काइव पेज पर ले जाएं
-    if (indiaNewsData.length > 100) {
-        window.location.href = "/archives.html";  // आर्काइव पेज पर रीडायरेक्ट करें
-    }
-
-    // खबरें लोड करने का कार्य
-    function loadMoreNews() {
-        let data = indiaNewsData;
-        let page = indiaPage;
-        let start = (page - 1) * 5;
-        let end = start + 5;
-        let newsToLoad = data.slice(start, end);  // पेज के हिसाब से खबरें निकालें
-
-        // HTML में खबरें जोड़ना
-        newsToLoad.forEach(news => {
-            const newsHtml = `
-                <div class="post">
-                    <h3>${news.title}</h3>
-                    <p>${news.content}</p>
-                    <img src="${news.image}" alt="${news.title}">
-                    <p><strong>समय:</strong> ${new Date(news.date).toLocaleString()}</p>
-                    <div class="social-share">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=${news.shareUrl}" target="_blank">Facebook</a>
-                        <a href="https://www.instagram.com/?url=${news.shareUrl}" target="_blank">Instagram</a>
-                        <a href="https://wa.me/?text=${news.shareUrl}" target="_blank">WhatsApp</a>
-                    </div>
-                </div>
-            `;
-            document.getElementById("india-news").insertAdjacentHTML('beforeend', newsHtml);
-        });
-
-        indiaPage++;  // पेज नंबर बढ़ाएं
-
-        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन को हटा दें
-        if ((page * 5) >= data.length) {
-            document.getElementById("load-india").style.display = 'none';
-        }
-    }
-
-    // पेज लोड होते ही पहली बार खबरें लोड करें
-    window.onload = loadMoreNews;
-</script>
-
-<style>
-    .news-section { margin: 20px 0; }
-    .post { margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; }
-    img { width: 100%; height: auto; }
-    .social-share a { margin-right: 10px; color: #0066cc; text-decoration: none; }
-    .social-share a:hover { text-decoration: underline; }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-<!-- "लोड मोर" बटन -->
-<a href="#" class="load-more">और खबरें लोड करें</a>
-
-<footer>
-    <p>&copy; 2025 IN News | सभी अधिकार सुरक्षित</p>
-</footer>
-
-</body>
-</htm>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News Website</title>
-    <style>
-        .news-container {
-            width: 80%;
-            margin: 20px auto;
-        }
-
-        .post {
-            background-color: #f9f9f9;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .post img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .post h2 {
-            font-size: 24px;
-            margin: 10px 0;
-        }
-
-        .post p {
-            font-size: 16px;
-        }
-
-        .post .date {
-            color: gray;
-            font-size: 12px;
-        }
     </style>
 </head>
 <body>
     <header>
-        <h1>News Website</h1>
+        <h1>न्यूज़ वेबसाइट</h1>
     </header>
 
     <div class="news-container" id="news-container">
         <!-- News will be loaded here -->
     </div>
 
-    <script>
-        // Google Sheets JSON API URL
-        const apiUrl='https://script.google.com/macros/s/AKfycbxekmUhTHDVAl7W7iOS1MCvwwe8vejskY4J-jR927A9BtzzzM86zKvDt67tMROCLo8sOg/exec'; // Replace with your JSON API link
+    <!-- "लोड मोर" बटन -->
+    <a href="#" class="load-more" id="load-more" onclick="loadMoreNews()">और खबरें लोड करें</a>
 
-        // Fetch JSON Data from Google Sheets
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('news-container');
-                data.forEach(news => {
-                    const newsHtml = `
-                        <div class="post">
-                            <h2>${news.title}</h2>
-                            <p class="date">${new Date(news.date).toLocaleString()}</p>
-                            <img src="${news.image}" alt="${news.title}">
-                            <p>${news.content}</p>
-                        </div>
-                    `;
-                    container.insertAdjacentHTML('beforeend', newsHtml);
+    <script>
+        const apiUrl = 'https://script.google.com/macros/s/AKfycbxekmUhTHDVAl7W7iOS1MCvwwe8vejskY4J-jR927A9BtzzzM86zKvDt67tMROCLo8sOg/exec'; // Google Sheets API URL
+        let page = 1;  // Track the page number
+        const itemsPerPage = 5; // Items per page
+
+        // Function to load news from the API
+        function loadNews() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        document.getElementById('news-container').innerHTML = '<p>कोई खबर नहीं मिली।</p>';
+                        return;
+                    }
+                    loadMoreNews(data); // Load news for the first page
+                })
+                .catch(error => {
+                    document.getElementById('news-container').innerHTML = '<p>डेटा लोड करने में समस्या हुई। कृपया बाद में पुनः प्रयास करें।</p>';
+                    console.error('Error fetching the data:', error);
                 });
-            })
-            .catch(error => console.error('Error fetching the data:', error));
+        }
+
+        // Function to load more news when "लोड मोर" button is clicked
+        function loadMoreNews(data) {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const newsToLoad = data.slice(start, end);
+
+            const container = document.getElementById('news-container');
+            newsToLoad.forEach(entry => {
+                const newsHtml = `
+                    <div class="post">
+                        <h2>${entry.title}</h2>
+                        <p class="date">${new Date(entry.date).toLocaleString()}</p>
+                        <img src="${entry.image}" alt="${entry.title}">
+                        <p>${entry.content}</p>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', newsHtml);
+            });
+
+            // Check if all the news has been loaded
+            if (end >= data.length) {
+                document.getElementById('load-more').style.display = 'none'; // Hide "Load more" button if no more news
+            } else {
+                page++; // Increment page for next load
+            }
+        }
+
+        // Initial page load
+        window.onload = loadNews;
+
     </script>
 </body>
 </html>
@@ -333,52 +121,484 @@
 
 
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>News from Google Sheets</title>
+    <title>न्यूज़ वेबसाइट</title>
     <style>
-        .news-container { width: 80%; margin: 20px auto; font-family: Arial, sans-serif; }
-        .post { background: #f9f9f9; margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
-        .post img { max-width: 100%; height: auto; }
-        .post h2 { font-size: 24px; margin: 10px 0; }
-        .post p { font-size: 16px; }
-        .post .date { color: gray; font-size: 12px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .news-container {
+            width: 80%;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        .post {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .post img {
+            max-width: 100%;
+            height: auto;
+        }
+        .post h2 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .post p {
+            font-size: 16px;
+        }
+        .post .date {
+            color: gray;
+            font-size: 12px;
+        }
+        .load-more {
+            background-color: #2196f3;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            display: block;
+            margin: 30px auto;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .load-more:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>News Website</h1>
+        <h1>न्यूज़ वेबसाइट</h1>
     </header>
 
     <div class="news-container" id="news-container">
         <!-- News will be loaded here -->
     </div>
 
-    <script>
-        // JSON API URL from Google Sheets
-        const apiUrl = 'https://spreadsheets.google.com/feeds/list/18piCUYC_LAg6lNzzqdydjt0td1lrXY7iZu3COYQDdWM/1/public/values?alt=json';
+    <!-- "लोड मोर" बटन -->
+    <button class="load-more" id="load-more" onclick="loadMoreNews()" disabled>और खबरें लोड करें</button>
 
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                const entries = data.feed.entry;
-                const container = document.getElementById('news-container');
-                entries.forEach(entry => {
+    <script>
+        const apiUrl = 'https://script.google.com/macros/s/AKfycbxekmUhTHDVAl7W7iOS1MCvwwe8vejskY4J-jR927A9BtzzzM86zKvDt67tMROCLo8sOg/exec'; // Google Sheets API URL
+        let page = 1;  // Track the page number
+        const itemsPerPage = 5; // Items per page
+        let data = [];  // Store the data from Google Sheets
+
+        // Function to load news from the API
+        function loadNews() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(fetchedData => {
+                    data = fetchedData; // Store the fetched data
+                    if (data.length === 0) {
+                        document.getElementById('news-container').innerHTML = '<p>कोई खबर नहीं मिली।</p>';
+                    } else {
+                        loadMoreNews(); // Load news for the first page
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('news-container').innerHTML = '<p>डेटा लोड करने में समस्या हुई। कृपया बाद में पुनः प्रयास करें।</p>';
+                    console.error('Error fetching the data:', error);
+                });
+        }
+
+        // Function to load more news when "लोड मोर" button is clicked
+        function loadMoreNews() {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const newsToLoad = data.slice(start, end);
+
+            const container = document.getElementById('news-container');
+            newsToLoad.forEach(entry => {
+                const newsHtml = `
+                    <div class="post">
+                        <h2>${entry.title}</h2>
+                        <p class="date">${new Date(entry.date).toLocaleString()}</p>
+                        <img src="${entry.image}" alt="${entry.title}">
+                        <p>${entry.content}</p>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', newsHtml);
+            });
+
+            page++; // Increment page for next load
+
+            // Disable "Load More" button if all news has been loaded
+            if (end >= data.length) {
+                document.getElementById('load-more').disabled = true;
+                document.getElementById('load-more').innerHTML = 'कोई और खबरें नहीं हैं!';
+            } else {
+                document.getElementById('load-more').disabled = false;
+                document.getElementById('load-more').innerHTML = 'और खबरें लोड करें';
+            }
+        }
+
+        // Initial page load
+        window.onload = loadNews;
+
+    </script>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>न्यूज़ वेबसाइट</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .news-container {
+            width: 80%;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        .post {
+            background-color: #ffffff;
+            margin: 15px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .post h2 {
+            font-size: 26px;
+            margin: 15px 0;
+            color: #d32f2f;
+        }
+        .post p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .post .date {
+            color: gray;
+            font-size: 14px;
+        }
+        .load-more {
+            background-color: #2196f3;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            margin: 30px auto;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .load-more:hover {
+            background-color: #1976d2;
+        }
+        .load-more:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .loading-message {
+            text-align: center;
+            font-size: 18px;
+            color: #2196f3;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>न्यूज़ वेबसाइट</h1>
+    </header>
+
+    <div class="news-container" id="news-container">
+        <!-- News will be loaded here -->
+    </div>
+
+    <!-- "लोड मोर" बटन -->
+    <button class="load-more" id="load-more" onclick="loadMoreNews()" disabled>और खबरें लोड करें</button>
+
+    <!-- लोडिंग संदेश -->
+    <div id="loading-message" class="loading-message">खबरें लोड हो रही हैं...</div>
+
+    <script>
+        const apiUrl = 'https://script.google.com/macros/s/AKfycbxekmUhTHDVAl7W7iOS1MCvwwe8vejskY4J-jR927A9BtzzzM86zKvDt67tMROCLo8sOg/exec'; // Google Sheets API URL
+        let page = 1;  // Track the page number
+        const itemsPerPage = 5; // Items per page
+        let data = [];  // Store the data from Google Sheets
+
+        // Function to load news from the API
+        function loadNews() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(fetchedData => {
+                    data = fetchedData; // Store the fetched data
+                    if (data.length === 0) {
+                        document.getElementById('news-container').innerHTML = '<p>कोई खबर नहीं मिली।</p>';
+                    } else {
+                        loadMoreNews(); // Load news for the first page
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('news-container').innerHTML = '<p>डेटा लोड करने में समस्या हुई। कृपया बाद में पुनः प्रयास करें।</p>';
+                    console.error('Error fetching the data:', error);
+                });
+        }
+
+        // Function to load more news when "लोड मोर" button is clicked
+        function loadMoreNews() {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const newsToLoad = data.slice(start, end);
+
+            const container = document.getElementById('news-container');
+            const loadingMessage = document.getElementById('loading-message');
+            loadingMessage.style.display = 'block'; // Show loading message
+
+            setTimeout(() => { // Simulate delay for better UX
+                newsToLoad.forEach(entry => {
                     const newsHtml = `
                         <div class="post">
-                            <h2>${entry.gsx$title.$t}</h2>
-                            <p class="date">${new Date(entry.gsx$date.$t).toLocaleString()}</p>
-                            <img src="${entry.gsx$imageurl.$t}" alt="${entry.gsx$title.$t}">
-                            <p>${entry.gsx$content.$t}</p>
+                            <h2>${entry.title}</h2>
+                            <p class="date">${new Date(entry.date).toLocaleString()}</p>
+                            <img src="${entry.image}" alt="${entry.title}">
+                            <p>${entry.content}</p>
                         </div>
                     `;
                     container.insertAdjacentHTML('beforeend', newsHtml);
                 });
-            })
-            .catch(error => console.error('Error fetching the data:', error));
+
+                page++; // Increment page for next load
+
+                // Hide loading message
+                loadingMessage.style.display = 'none';
+
+                // Disable "Load More" button if all news has been loaded
+                if (end >= data.length) {
+                    document.getElementById('load-more').disabled = true;
+                    document.getElementById('load-more').innerHTML = 'कोई और खबरें नहीं हैं!';
+                } else {
+                    document.getElementById('load-more').disabled = false;
+                    document.getElementById('load-more').innerHTML = 'और खबरें लोड करें';
+                }
+            }, 1000); // Simulate delay of 1 second for a smooth loading experience
+        }
+
+        // Initial page load
+        window.onload = loadNews;
+    </script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>न्यूज़ वेबसाइट</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .news-container {
+            width: 80%;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        .post {
+            background-color: #ffffff;
+            margin: 15px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .post h2 {
+            font-size: 26px;
+            margin: 15px 0;
+            color: #d32f2f;
+        }
+        .post p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .post .date {
+            color: gray;
+            font-size: 14px;
+        }
+        .load-more {
+            background-color: #2196f3;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            margin: 30px auto;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .load-more:hover {
+            background-color: #1976d2;
+        }
+        .load-more:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .loading-message {
+            text-align: center;
+            font-size: 18px;
+            color: #2196f3;
+            display: none;
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #2196f3;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 50%;
+            display: none;
+            cursor: pointer;
+        }
+        .scroll-to-top:hover {
+            background-color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>न्यूज़ वेबसाइट</h1>
+    </header>
+
+    <div class="news-container" id="news-container">
+        <!-- News will be loaded here -->
+    </div>
+
+    <!-- "लोड मोर" बटन -->
+    <button class="load-more" id="load-more" onclick="loadMoreNews()" disabled>और खबरें लोड करें</button>
+
+    <!-- लोडिंग संदेश -->
+    <div id="loading-message" class="loading-message">खबरें लोड हो रही हैं...</div>
+
+    <!-- Scroll to top button -->
+    <button id="scrollToTopBtn" class="scroll-to-top" onclick="scrollToTop()">⬆️</button>
+
+    <script>
+        const apiUrl = 'https://script.google.com/macros/s/AKfycbxekmUhTHDVAl7W7iOS1MCvwwe8vejskY4J-jR927A9BtzzzM86zKvDt67tMROCLo8sOg/exec'; // Google Sheets API URL
+        let page = 1;  // Track the page number
+        const itemsPerPage = 5; // Items per page
+        let data = [];  // Store the data from Google Sheets
+
+        // Function to load news from the API
+        function loadNews() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(fetchedData => {
+                    data = fetchedData; // Store the fetched data
+                    if (data.length === 0) {
+                        document.getElementById('news-container').innerHTML = '<p>कोई खबर नहीं मिली।</p>';
+                    } else {
+                        loadMoreNews(); // Load news for the first page
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('news-container').innerHTML = '<p>डेटा लोड करने में समस्या हुई। कृपया बाद में पुनः प्रयास करें।</p>';
+                    console.error('Error fetching the data:', error);
+                });
+        }
+
+        // Function to load more news when "लोड मोर" button is clicked
+        function loadMoreNews() {
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const newsToLoad = data.slice(start, end);
+
+            const container = document.getElementById('news-container');
+            const loadingMessage = document.getElementById('loading-message');
+            loadingMessage.style.display = 'block'; // Show loading message
+
+            setTimeout(() => { // Simulate delay for better UX
+                newsToLoad.forEach(entry => {
+                    const newsHtml = `
+                        <div class="post">
+                            <h2>${entry.title}</h2>
+                            <p class="date">${new Date(entry.date).toLocaleString()}</p>
+                            <img src="${entry.image}" alt="${entry.title}">
+                            <p>${entry.content}</p>
+                        </div>
+                    `;
+                    container.insertAdjacentHTML('beforeend', newsHtml);
+                });
+
+                page++; // Increment page for next load
+
+                // Hide loading message
+                loadingMessage.style.display = 'none';
+
+                // Disable "Load More" button if all news has been loaded
+                if (end >= data.length) {
+                    document.getElementById('load-more').disabled = true;
+                    document.getElementById('load-more').innerHTML = 'कोई और खबरें नहीं हैं!';
+                } else {
+                    document.getElementById('load-more').disabled = false;
+                    document.getElementById('load-more').innerHTML = 'और खबरें लोड करें';
+                }
+            }, 1000); // Simulate delay of 1 second for a smooth loading experience
+        }
+
+        // Function to scroll to top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show "Scroll to top" button when user scrolls down
+        window.onscroll = function() {
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        // Initial page load
+        window.onload = loadNews;
     </script>
 </body>
 </html>
