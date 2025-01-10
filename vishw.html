@@ -126,111 +126,124 @@
 
 
 
-<!-- International News Section -->
-<div class="news-section">
-    <h2>अंतर्राष्ट्रीय समाचार</h2>
-    <div id="international-news" class="news-list">
-        <!-- यहां खबरें लोड होंगी -->
-    </div>
-    <a href="#" class="load-more" id="load-international" onclick="loadMoreNews('international')">और खबरें लोड करें</a>
-</div>
 
-<!-- Global Politics Section -->
-<div class="news-section">
-    <h2>वैश्विक राजनीति</h2>
-    <div id="global-politics" class="news-list">
-        <!-- यहां खबरें लोड होंगी -->
-    </div>
-    <a href="#" class="load-more" id="load-politics" onclick="loadMoreNews('politics')">और खबरें लोड करें</a>
-</div>
 
-<!-- World Sports Section -->
+
+
+
+
+
+
+
+<!-- विश्व समाचार सेक्शन -->
 <div class="news-section">
-    <h2>दुनिया से खेल</h2>
-    <div id="world-sports" class="news-list">
+    <h2>विश्व समाचार</h2>
+    <div id="world-news" class="news-list">
         <!-- यहां खबरें लोड होंगी -->
     </div>
-    <a href="#" class="load-more" id="load-sports" onclick="loadMoreNews('sports')">और खबरें लोड करें</a>
+    <a href="#" class="load-more" id="load-world" onclick="loadMoreNews()">और खबरें लोड करें</a>
 </div>
 
 <script>
-    // स्टेटिक डेटा (इसे API से बदल सकते हैं)
-    const worldNewsData = {
-        international: [
-            { title: "अंतर्राष्ट्रीय खबर 1", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
-            { title: "अंतर्राष्ट्रीय खबर 2", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
-            { title: "अंतर्राष्ट्रीय खबर 3", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
-            { title: "अंतर्राष्ट्रीय खबर 4", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
-            { title: "अंतर्राष्ट्रीय खबर 5", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
-            { title: "अंतर्राष्ट्रीय खबर 6", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
-            { title: "अंतर्राष्ट्रीय खबर 7", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" },
-            { title: "अंतर्राष्ट्रीय खबर 8", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है।" }
-        ],
-        politics: [
-            { title: "वैश्विक राजनीति 1", content: "यह वैश्विक राजनीति का विवरण है।" },
-            { title: "वैश्विक राजनीति 2", content: "यह वैश्विक राजनीति का विवरण है।" },
-            { title: "वैश्विक राजनीति 3", content: "यह वैश्विक राजनीति का विवरण है।" },
-            { title: "वैश्विक राजनीति 4", content: "यह वैश्विक राजनीति का विवरण है।" },
-            { title: "वैश्विक राजनीति 5", content: "यह वैश्विक राजनीति का विवरण है।" },
-            { title: "वैश्विक राजनीति 6", content: "यह वैश्विक राजनीति का विवरण है।" },
-            { title: "वैश्विक राजनीति 7", content: "यह वैश्विक राजनीति का विवरण है।" },
-            { title: "वैश्विक राजनीति 8", content: "यह वैश्विक राजनीति का विवरण है।" }
-        ],
-        sports: [
-            { title: "दुनिया से खेल 1", content: "यह खेल समाचार का विवरण है।" },
-            { title: "दुनिया से खेल 2", content: "यह खेल समाचार का विवरण है।" },
-            { title: "दुनिया से खेल 3", content: "यह खेल समाचार का विवरण है।" },
-            { title: "दुनिया से खेल 4", content: "यह खेल समाचार का विवरण है।" },
-            { title: "दुनिया से खेल 5", content: "यह खेल समाचार का विवरण है।" },
-            { title: "दुनिया से खेल 6", content: "यह खेल समाचार का विवरण है।" },
-            { title: "दुनिया से खेल 7", content: "यह खेल समाचार का विवरण है।" },
-            { title: "दुनिया से खेल 8", content: "यह खेल समाचार का विवरण है।" }
-        ]
-    };
+    let worldPage = 1;  // पेज नंबर
+    let worldNewsData = [
+        // मैनुअली खबरें डाली जाएंगी
+        {
+            title: "विश्व में बड़ा बदलाव",
+            content: "दुनिया भर में एक महत्वपूर्ण बदलाव आया है...",
+            image: "world1.jpg",
+            date: "2025-01-09T10:00:00Z",
+            shareUrl: "https://facebook.com" // URL को बदलें
+        },
+        {
+            title: "नई वैश्विक पहल",
+            content: "दुनिया के देशों ने एक नई वैश्विक पहल शुरू की है...",
+            image: "world2.jpg",
+            date: "2025-01-08T14:30:00Z",
+            shareUrl: "https://whatsapp.com" // URL को बदलें
+        },
+        {
+            title: "विश्व स्वास्थ्य संकट",
+            content: "विश्व भर में स्वास्थ्य संकट गहरा रहा है...",
+            image: "world3.jpg",
+            date: "2025-01-07T12:00:00Z",
+            shareUrl: "https://instagram.com" // URL को बदलें
+        },
+        {
+            title: "वैश्विक राजनीति में उथल-पुथल",
+            content: "दुनिया के प्रमुख देशों में राजनीतिक उथल-पुथल बढ़ रही है...",
+            image: "world4.jpg",
+            date: "2025-01-06T16:00:00Z",
+            shareUrl: "https://facebook.com" // URL को बदलें
+        },
+        // अन्य खबरें यहाँ डालें
+    ];
 
-    let internationalPage = 1;
-    let politicsPage = 1;
-    let sportsPage = 1;
+    // अगर 100 से अधिक खबरें हो जाएं तो आर्काइव पेज पर ले जाएं
+    if (worldNewsData.length > 100) {
+        window.location.href = "/archives.html";  // आर्काइव पेज पर रीडायरेक्ट करें
+    }
 
     // खबरें लोड करने का कार्य
-    function loadMoreNews(section) {
-        let data = worldNewsData[section];
-        let page = section === 'international' ? internationalPage : section === 'politics' ? politicsPage : sportsPage;
+    function loadMoreNews() {
+        let data = worldNewsData;
+        let page = worldPage;
         let start = (page - 1) * 5;
         let end = start + 5;
-        let newsToLoad = data.slice(start, end);
+        let newsToLoad = data.slice(start, end);  // पेज के हिसाब से खबरें निकालें
 
         // HTML में खबरें जोड़ना
         newsToLoad.forEach(news => {
-            const newsHtml = `<div class="post"><h3>${news.title}</h3><p>${news.content}</p></div>`;
-            document.getElementById(`${section}-news`).insertAdjacentHTML('beforeend', newsHtml);
+            const newsHtml = `
+                <div class="post">
+                    <h3>${news.title}</h3>
+                    <p>${news.content}</p>
+                    <img src="${news.image}" alt="${news.title}">
+                    <p><strong>समय:</strong> ${new Date(news.date).toLocaleString()}</p>
+                    <div class="social-share">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(news.shareUrl)}" target="_blank">Facebook</a>
+                        <a href="https://www.instagram.com/?url=${encodeURIComponent(news.shareUrl)}" target="_blank">Instagram</a>
+                        <a href="https://wa.me/?text=${encodeURIComponent(news.shareUrl)}" target="_blank">WhatsApp</a>
+                    </div>
+                </div>
+            `;
+            document.getElementById("world-news").insertAdjacentHTML('beforeend', newsHtml);
         });
 
-        // अगला पेज बढ़ाना
-        if (section === 'international') {
-            internationalPage++;
-        } else if (section === 'politics') {
-            politicsPage++;
-        } else {
-            sportsPage++;
-        }
+        worldPage++;  // पेज नंबर बढ़ाएं
 
-        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन हटा देना
+        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन को हटा दें
         if ((page * 5) >= data.length) {
-            document.getElementById(`load-${section}`).style.display = 'none';
+            document.getElementById("load-world").style.display = 'none';
         }
     }
 
-    // पेज लोड होते ही पहली बार खबरें लोड करना
-    window.onload = function() {
-        loadMoreNews('international');
-        loadMoreNews('politics');
-        loadMoreNews('sports');
-    };
+    // पेज लोड होते ही पहली बार खबरें लोड करें
+    window.onload = loadMoreNews;
 </script>
+
+<style>
+    .news-section { margin: 20px 0; }
+    .post { margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; }
+    img { width: 100%; height: auto; }
+    .social-share a { margin-right: 10px; color: #0066cc; text-decoration: none; }
+    .social-share a:hover { text-decoration: underline; }
+</style>
 
 
     <!-- मुख्य पोस्ट यहां दिखाई देंगे -->
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
