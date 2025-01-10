@@ -3,128 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ब्रेकिंग न्यूज</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ब्रेकिंग न्यूज - IN News</title>
+    <link rel="stylesheet" href="style.css"> <!-- स्टाइलशीट लिंक -->
+    <script src="script.js" defer></script> <!-- जावास्क्रिप्ट लिंक -->
     <style>
-        body 
+        /* सामान्य CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
 
-         <!-- ब्रेकिंग न्यूज पेज -->
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ब्रेकिंग न्यूज</title>
-    <style>
-        .breaking-news-container { margin: 20px; padding: 20px; border: 2px solid #ddd; }
-        .main-breaking { margin-bottom: 30px; padding: 20px; background-color: #f9f9f9; border: 2px solid #ddd; }
-        .breaking-section { margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; }
-        .breaking-section img { width: 100%; height: auto; }
-        .social-share a { margin-right: 10px; color: #0066cc; text-decoration: none; }
-        .social-share a:hover { text-decoration: underline; }
+        header {
+            background-color: #e22b2b;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #2a2a2a;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .news-section {
+            margin: 20px 0;
+        }
+
+        .breaking-news, .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .post {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .social-share a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #1d72b8;
+        }
+
+        .social-share a:hover {
+            text-decoration: underline;
+        }
+
+        .load-more {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e22b2b;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .load-more:hover {
+            background-color: #c21d1d;
+        }
+
+        .archives-link {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .archives-link a {
+            color: #e22b2b;
+            text-decoration: none;
+        }
+
+        .archives-link a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-    <!-- मुख्य ब्रेकिंग न्यूज -->
-    <div class="breaking-news-container">
-        <div class="main-breaking">
+
+    <!-- हेडर -->
+    <header>
+        <h1>IN News</h1>
+        <p>ताजातरीन ब्रेकिंग न्यूज</p>
+    </header>
+
+    <div class="container">
+        <!-- मुख्य ब्रेकिंग न्यूज -->
+        <section class="breaking-news">
             <h2>मुख्य ब्रेकिंग न्यूज</h2>
-            <div id="main-breaking-news">
+            <div id="main-breaking-news" class="post">
                 <!-- मुख्य ब्रेकिंग न्यूज लोड होगी -->
             </div>
+        </section>
+
+        <!-- ब्रेकिंग न्यूज के सात सेक्शन -->
+        <section class="news-section" id="international-news">
+            <h2>अंतर्राष्ट्रीय समाचार</h2>
+            <div class="news-list"></div>
+            <a href="#" class="load-more" id="load-international" onclick="loadMoreNews('international')">और खबरें लोड करें</a>
+        </section>
+
+        <section class="news-section" id="politics-news">
+            <h2>वैश्विक राजनीति</h2>
+            <div class="news-list"></div>
+            <a href="#" class="load-more" id="load-politics" onclick="loadMoreNews('politics')">और खबरें लोड करें</a>
+        </section>
+
+        <section class="news-section" id="sports-news">
+            <h2>दुनिया से खेल</h2>
+            <div class="news-list"></div>
+            <a href="#" class="load-more" id="load-sports" onclick="loadMoreNews('sports')">और खबरें लोड करें</a>
+        </section>
+
+        <section class="news-section" id="entertainment-news">
+            <h2>मनोरंजन</h2>
+            <div class="news-list"></div>
+            <a href="#" class="load-more" id="load-entertainment" onclick="loadMoreNews('entertainment')">और खबरें लोड करें</a>
+        </section>
+
+        <section class="news-section" id="science-news">
+            <h2>विज्ञान</h2>
+            <div class="news-list"></div>
+            <a href="#" class="load-more" id="load-science" onclick="loadMoreNews('science')">और खबरें लोड करें</a>
+        </section>
+
+        <section class="news-section" id="health-news">
+            <h2>स्वास्थ्य</h2>
+            <div class="news-list"></div>
+            <a href="#" class="load-more" id="load-health" onclick="loadMoreNews('health')">और खबरें लोड करें</a>
+        </section>
+
+        <section class="news-section" id="india-news">
+            <h2>भारत समाचार</h2>
+            <div class="news-list"></div>
+            <a href="#" class="load-more" id="load-india" onclick="loadMoreNews('india')">और खबरें लोड करें</a>
+        </section>
+
+        <!-- आर्काइव पेज लिंक -->
+        <div class="archives-link">
+            <a href="/archives.html">आर्काइव पेज पर जाएं</a>
         </div>
     </div>
 
-    <!-- ब्रेकिंग न्यूज सेक्शन 1 -->
-    <div class="breaking-news-container">
-        <h2>ब्रेकिंग न्यूज सेक्शन 1</h2>
-        <div id="section-1-breaking-news" class="news-list">
-            <!-- यहां सेक्शन 1 की ब्रेकिंग न्यूज लोड होंगी -->
-        </div>
-        <a href="#" class="load-more" id="load-section-1" onclick="loadMoreNews('section-1')">और खबरें लोड करें</a>
-    </div>
-
-    <!-- ब्रेकिंग न्यूज सेक्शन 2 -->
-    <div class="breaking-news-container">
-        <h2>ब्रेकिंग न्यूज सेक्शन 2</h2>
-        <div id="section-2-breaking-news" class="news-list">
-            <!-- यहां सेक्शन 2 की ब्रेकिंग न्यूज लोड होंगी -->
-        </div>
-        <a href="#" class="load-more" id="load-section-2" onclick="loadMoreNews('section-2')">और खबरें लोड करें</a>
-    </div>
-
-    <!-- ब्रेकिंग न्यूज सेक्शन 3 -->
-    <div class="breaking-news-container">
-        <h2>ब्रेकिंग न्यूज सेक्शन 3</h2>
-        <div id="section-3-breaking-news" class="news-list">
-            <!-- यहां सेक्शन 3 की ब्रेकिंग न्यूज लोड होंगी -->
-        </div>
-        <a href="#" class="load-more" id="load-section-3" onclick="loadMoreNews('section-3')">और खबरें लोड करें</a>
-    </div>
-
-    <!-- ब्रेकिंग न्यूज सेक्शन 4 -->
-    <div class="breaking-news-container">
-        <h2>ब्रेकिंग न्यूज सेक्शन 4</h2>
-        <div id="section-4-breaking-news" class="news-list">
-            <!-- यहां सेक्शन 4 की ब्रेकिंग न्यूज लोड होंगी -->
-        </div>
-        <a href="#" class="load-more" id="load-section-4" onclick="loadMoreNews('section-4')">और खबरें लोड करें</a>
-    </div>
-
-    <!-- ब्रेकिंग न्यूज सेक्शन 5 -->
-    <div class="breaking-news-container">
-        <h2>ब्रेकिंग न्यूज सेक्शन 5</h2>
-        <div id="section-5-breaking-news" class="news-list">
-            <!-- यहां सेक्शन 5 की ब्रेकिंग न्यूज लोड होंगी -->
-        </div>
-        <a href="#" class="load-more" id="load-section-5" onclick="loadMoreNews('section-5')">और खबरें लोड करें</a>
-    </div>
-
-    <!-- ब्रेकिंग न्यूज सेक्शन 6 -->
-    <div class="breaking-news-container">
-        <h2>ब्रेकिंग न्यूज सेक्शन 6</h2>
-        <div id="section-6-breaking-news" class="news-list">
-            <!-- यहां सेक्शन 6 की ब्रेकिंग न्यूज लोड होंगी -->
-        </div>
-        <a href="#" class="load-more" id="load-section-6" onclick="loadMoreNews('section-6')">और खबरें लोड करें</a>
-    </div>
-
-    <!-- ब्रेकिंग न्यूज सेक्शन 7 -->
-    <div class="breaking-news-container">
-        <h2>ब्रेकिंग न्यूज सेक्शन 7</h2>
-        <div id="section-7-breaking-news" class="news-list">
-            <!-- यहां सेक्शन 7 की ब्रेकिंग न्यूज लोड होंगी -->
-        </div>
-        <a href="#" class="load-more" id="load-section-7" onclick="loadMoreNews('section-7')">और खबरें लोड करें</a>
-    </div>
+    <!-- फुटर -->
+    <footer>
+        <p>&copy; 2025 IN News | सभी अधिकार सुरक्षित</p>
+    </footer>
 
     <script>
-        // ब्रेकिंग न्यूज डेटा (यह डेटा मैन्युअली जोड़ा जाएगा)
-        const breakingNewsData = {
-            main: [
-                { title: "मुख्य ब्रेकिंग: प्रधानमंत्री का ऐतिहासिक भाषण", content: "प्रधानमंत्री ने आज ऐतिहासिक भाषण दिया...", image: "main-breaking.jpg", date: "2025-01-09T10:00:00Z", shareUrl: "https://facebook.com" }
+        const newsData = {
+            international: [
+                { title: "अंतर्राष्ट्रीय खबर 1", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है...", image: "india1.jpg", date: "2025-01-09T10:00:00Z", shareUrl: "https://facebook.com" },
+                { title: "अंतर्राष्ट्रीय खबर 2", content: "यह अंतर्राष्ट्रीय समाचार का विवरण है...", image: "india2.jpg", date: "2025-01-08T14:30:00Z", shareUrl: "https://whatsapp.com" },
+                // अधिक खबरें
             ],
-            section1: [
-                { title: "सेक्शन 1 ब्रेकिंग 1", content: "सेक्शन 1 की ब्रेकिंग न्यूज...", image: "section1-1.jpg", date: "2025-01-09T09:30:00Z", shareUrl: "https://whatsapp.com" },
-                // अधिक ब्रेकिंग न्यूज यहां डालें
+            politics: [
+                { title: "वैश्विक राजनीति 1", content: "यह वैश्विक राजनीति का विवरण है...", image: "politics1.jpg", date: "2025-01-09T12:00:00Z", shareUrl: "https://facebook.com" },
+                // अधिक खबरें
             ],
-            section2: [
-                { title: "सेक्शन 2 ब्रेकिंग 1", content: "सेक्शन 2 की ब्रेकिंग न्यूज...", image: "section2-1.jpg", date: "2025-01-09T08:30:00Z", shareUrl: "https://instagram.com" },
-                // अधिक ब्रेकिंग न्यूज यहां डालें
+            sports: [
+                { title: "दुनिया से खेल 1", content: "यह खेल समाचार का विवरण है...", image: "sports1.jpg", date: "2025-01-09T09:00:00Z", shareUrl: "https://whatsapp.com" },
+                // अधिक खबरें
             ],
-            // अन्य सेक्शनों के लिए भी ऐसा ही डेटा बनाएं
+            entertainment: [
+                { title: "मनोरंजन 1", content: "यह मनोरंजन समाचार का विवरण है...", image: "entertainment1.jpg", date: "2025-01-08T14:00:00Z", shareUrl: "https://whatsapp.com" },
+                // अधिक खबरें
+            ],
+            science: [
+                { title: "विज्ञान 1", content: "यह विज्ञान समाचार का विवरण है...", image: "science1.jpg", date: "2025-01-09T07:00:00Z", shareUrl: "https://facebook.com" },
+                // अधिक खबरें
+            ],
+            health: [
+                { title: "स्वास्थ्य 1", content: "यह स्वास्थ्य समाचार का विवरण है...", image: "health1.jpg", date: "2025-01-09T11:00:00Z", shareUrl: "https://whatsapp.com" },
+                // अधिक खबरें
+            ],
+            india: [
+                { title: "भारत खबर 1", content: "यह भारत समाचार का विवरण है...", image: "india1.jpg", date: "2025-01-09T08:00:00Z", shareUrl: "https://whatsapp.com" },
+                // अधिक खबरें
+            ]
         };
 
-        let breakingPage = 1;
+        let pageNumbers = {
+            international: 1,
+            politics: 1,
+            sports: 1,
+            entertainment: 1,
+            science: 1,
+            health: 1,
+            india: 1
+        };
 
-        // खबरें लोड करने का कार्य
         function loadMoreNews(section) {
-            let data = breakingNewsData[section];
-            let page = breakingPage;
-            let start = (page - 1) * 5;
-            let end = start + 5;
-            let newsToLoad = data.slice(start, end);
+            const sectionData = newsData[section];
+            const page = pageNumbers[section];
+            const start = (page - 1) * 5;
+            const end = start + 5;
+            const newsToLoad = sectionData.slice(start, end);
 
-            // HTML में खबरें जोड़ना
             newsToLoad.forEach(news => {
                 const newsHtml = `
                     <div class="post">
@@ -133,50 +226,59 @@
                         <img src="${news.image}" alt="${news.title}">
                         <p><strong>समय:</strong> ${new Date(news.date).toLocaleString()}</p>
                         <div class="social-share">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(news.shareUrl)}" target="_blank">Facebook</a>
-                            <a href="https://www.instagram.com/?url=${encodeURIComponent(news.shareUrl)}" target="_blank">Instagram</a>
-                            <a href="https://wa.me/?text=${encodeURIComponent(news.shareUrl)}" target="_blank">WhatsApp</a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=${news.shareUrl}" target="_blank">Facebook</a>
+                            <a href="https://www.instagram.com/?url=${news.shareUrl}" target="_blank">Instagram</a>
+                            <a href="https://wa.me/?text=${news.shareUrl}" target="_blank">WhatsApp</a>
                         </div>
                     </div>
                 `;
-                document.getElementById(`${section}-breaking-news`).insertAdjacentHTML('beforeend', newsHtml);
+                document.getElementById(`${section}-news`).insertAdjacentHTML('beforeend', newsHtml);
             });
 
-            breakingPage++;
+            pageNumbers[section]++; // पेज नंबर बढ़ाएं
 
-            // "और खबरें लोड करें" बटन को छिपाना
-            if ((page * 5) >= data.length) {
+            // यदि सभी खबरें लोड हो गई हैं, तो "और खबरें लोड करें" बटन को हटा दें
+            if ((page * 5) >= sectionData.length) {
                 document.getElementById(`load-${section}`).style.display = 'none';
             }
         }
 
-        // पेज लोड होते ही मुख्य ब्रेकिंग न्यूज लोड करें
-        window.onload = function() {
-            breakingNewsData.main.forEach(news => {
-                const mainBreakingHtml = `
-                    <div class="post">
-                        <h3>${news.title}</h3>
-                        <p>${news.content}</p>
-                        <img src="${news.image}" alt="${news.title}">
-                        <p><strong>समय:</strong> ${new Date(news.date).toLocaleString()}</p>
-                        <div class="social-share">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(news.shareUrl)}" target="_blank">Facebook</a>
-                            <a href="https://www.instagram.com/?url=${encodeURIComponent(news.shareUrl)}" target="_blank">Instagram</a>
-                            <a href="https://wa.me/?text=${encodeURIComponent(news.shareUrl)}" target="_blank">WhatsApp</a>
-                        </div>
-                    </div>
-                `;
-                document.getElementById("main-breaking-news").insertAdjacentHTML('beforeend', mainBreakingHtml);
-            });
+        // मुख्य ब्रेकिंग न्यूज लोड करने का कार्य
+        function loadMainBreakingNews() {
+            const mainBreakingNews = {
+                title: "मुख्य ब्रेकिंग न्यूज",
+                content: "यह प्रमुख ब्रेकिंग न्यूज का विवरण है...",
+                image: "main-breaking.jpg",
+                date: "2025-01-09T09:00:00Z",
+                shareUrl: "https://facebook.com"
+            };
 
-            // सभी सेक्शन के लिए ब्रेकिंग न्यूज लोड करें
-            loadMoreNews('section-1');
-            loadMoreNews('section-2');
-            loadMoreNews('section-3');
-            loadMoreNews('section-4');
-            loadMoreNews('section-5');
-            loadMoreNews('section-6');
-            loadMoreNews('section-7');
+            const mainBreakingHtml = `
+                <div class="post">
+                    <h3>${mainBreakingNews.title}</h3>
+                    <p>${mainBreakingNews.content}</p>
+                    <img src="${mainBreakingNews.image}" alt="${mainBreakingNews.title}">
+                    <p><strong>समय:</strong> ${new Date(mainBreakingNews.date).toLocaleString()}</p>
+                    <div class="social-share">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=${mainBreakingNews.shareUrl}" target="_blank">Facebook</a>
+                        <a href="https://www.instagram.com/?url=${mainBreakingNews.shareUrl}" target="_blank">Instagram</a>
+                        <a href="https://wa.me/?text=${mainBreakingNews.shareUrl}" target="_blank">WhatsApp</a>
+                    </div>
+                </div>
+            `;
+            document.getElementById("main-breaking-news").innerHTML = mainBreakingHtml;
+        }
+
+        // पेज लोड होने पर मुख्य ब्रेकिंग न्यूज और अन्य खबरें लोड करें
+        window.onload = function() {
+            loadMainBreakingNews(); // मुख्य ब्रेकिंग न्यूज लोड करें
+            loadMoreNews('international'); // अंतर्राष्ट्रीय समाचार लोड करें
+            loadMoreNews('politics'); // वैश्विक राजनीति लोड करें
+            loadMoreNews('sports'); // खेल समाचार लोड करें
+            loadMoreNews('entertainment'); // मनोरंजन समाचार लोड करें
+            loadMoreNews('science'); // विज्ञान समाचार लोड करें
+            loadMoreNews('health'); // स्वास्थ्य समाचार लोड करें
+            loadMoreNews('india'); // भारत समाचार लोड करें
         };
     </script>
 </body>
