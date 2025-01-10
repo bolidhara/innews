@@ -129,123 +129,112 @@
 
 
 
-<!-- Science News Section -->
+
+
+
+
+
+<!-- विज्ञान समाचार सेक्शन -->
 <div class="news-section">
     <h2>विज्ञान समाचार</h2>
     <div id="science-news" class="news-list">
         <!-- यहां खबरें लोड होंगी -->
     </div>
-    <a href="#" class="load-more" id="load-science" onclick="loadMoreNews('science')">और खबरें लोड करें</a>
+    <a href="#" class="load-more" id="load-science" onclick="loadMoreNews()">और खबरें लोड करें</a>
 </div>
 
 <script>
-    // स्टेटिक डेटा (इसे API से बदल सकते हैं)
-    const worldNewsData = {
-        science: [
-            { title: "विज्ञान खबर 1", content: "यह विज्ञान समाचार का विवरण है।", image: "science1.jpg" },
-            { title: "विज्ञान खबर 2", content: "यह विज्ञान समाचार का विवरण है।", image: "science2.jpg" },
-            { title: "विज्ञान खबर 3", content: "यह विज्ञान समाचार का विवरण है।", image: "science3.jpg" },
-            { title: "विज्ञान खबर 4", content: "यह विज्ञान समाचार का विवरण है।", image: "science4.jpg" },
-            { title: "विज्ञान खबर 5", content: "यह विज्ञान समाचार का विवरण है।", image: "science5.jpg" },
-            { title: "विज्ञान खबर 6", content: "यह विज्ञान समाचार का विवरण है।", image: "science6.jpg" },
-            { title: "विज्ञान खबर 7", content: "यह विज्ञान समाचार का विवरण है।", image: "science7.jpg" },
-            { title: "विज्ञान खबर 8", content: "यह विज्ञान समाचार का विवरण है।", image: "science8.jpg" }
-        ]
-    };
+    let sciencePage = 1;  // पेज नंबर
+    let scienceNewsData = [
+        // मैनुअली खबरें डाली जाएंगी
+        {
+            title: "नई प्रौद्योगिकी से ऊर्जा बचत",
+            content: "वैज्ञानिकों ने एक नई प्रौद्योगिकी विकसित की है जो ऊर्जा की बचत में मदद करेगी...",
+            image: "science1.jpg",
+            date: "2025-01-09T10:00:00Z",
+            shareUrl: "https://facebook.com" // URL को बदलें
+        },
+        {
+            title: "स्वास्थ्य पर विज्ञान का प्रभाव",
+            content: "विज्ञान ने स्वास्थ्य देखभाल में कई सुधार किए हैं...",
+            image: "science2.jpg",
+            date: "2025-01-08T14:30:00Z",
+            shareUrl: "https://whatsapp.com" // URL को बदलें
+        },
+        {
+            title: "नए अंतरिक्ष मिशन का अनावरण",
+            content: "नासा ने एक नए अंतरिक्ष मिशन का अनावरण किया है...",
+            image: "science3.jpg",
+            date: "2025-01-07T12:00:00Z",
+            shareUrl: "https://instagram.com" // URL को बदलें
+        },
+        {
+            title: "कृत्रिम बुद्धिमत्ता का विकास",
+            content: "कृत्रिम बुद्धिमत्ता ने कई उद्योगों में क्रांति ला दी है...",
+            image: "science4.jpg",
+            date: "2025-01-06T16:00:00Z",
+            shareUrl: "https://facebook.com" // URL को बदलें
+        },
+        // अन्य खबरें यहाँ डालें
+    ];
 
-    let sciencePage = 1;
+    // अगर 100 से अधिक खबरें हो जाएं तो आर्काइव पेज पर ले जाएं
+    if (scienceNewsData.length > 100) {
+        window.location.href = "/archives.html";  // आर्काइव पेज पर रीडायरेक्ट करें
+    }
 
     // खबरें लोड करने का कार्य
-    function loadMoreNews(section) {
-        let data = worldNewsData[section];
+    function loadMoreNews() {
+        let data = scienceNewsData;
         let page = sciencePage;
         let start = (page - 1) * 5;
         let end = start + 5;
-        let newsToLoad = data.slice(start, end);
+        let newsToLoad = data.slice(start, end);  // पेज के हिसाब से खबरें निकालें
 
         // HTML में खबरें जोड़ना
         newsToLoad.forEach(news => {
             const newsHtml = `
                 <div class="post">
-                    <img src="${news.image}" alt="${news.title}" class="news-image">
                     <h3>${news.title}</h3>
                     <p>${news.content}</p>
+                    <img src="${news.image}" alt="${news.title}">
+                    <p><strong>समय:</strong> ${new Date(news.date).toLocaleString()}</p>
+                    <div class="social-share">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(news.shareUrl)}" target="_blank">Facebook</a>
+                        <a href="https://www.instagram.com/?url=${encodeURIComponent(news.shareUrl)}" target="_blank">Instagram</a>
+                        <a href="https://wa.me/?text=${encodeURIComponent(news.shareUrl)}" target="_blank">WhatsApp</a>
+                    </div>
                 </div>
             `;
-            document.getElementById(`${section}-news`).insertAdjacentHTML('beforeend', newsHtml);
+            document.getElementById("science-news").insertAdjacentHTML('beforeend', newsHtml);
         });
 
-        // अगला पेज बढ़ाना
-        sciencePage++;
+        sciencePage++;  // पेज नंबर बढ़ाएं
 
-        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन हटा देना
+        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन को हटा दें
         if ((page * 5) >= data.length) {
-            document.getElementById(`load-${section}`).style.display = 'none';
+            document.getElementById("load-science").style.display = 'none';
         }
     }
 
-    // पेज लोड होते ही पहली बार खबरें लोड करना
-    window.onload = function() {
-        loadMoreNews('science');
-    };
+    // पेज लोड होते ही पहली बार खबरें लोड करें
+    window.onload = loadMoreNews;
 </script>
 
-<!-- CSS (खबरों और इमेज के लेआउट को ठीक करने के लिए) -->
 <style>
-    .news-section {
-        margin: 20px 0;
-    }
-
-    .news-list {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .post {
-        width: 100%;
-        max-width: 480px;
-        margin: 10px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-
-    .post img.news-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .post h3 {
-        font-size: 18px;
-        color: #333;
-        margin: 10px;
-    }
-
-    .post p {
-        font-size: 14px;
-        color: #555;
-        margin: 0 10px 10px;
-    }
-
-    .load-more {
-        text-align: center;
-        display: block;
-        background-color: #2196f3;
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-        font-size: 16px;
-        margin-top: 30px;
-        text-align: center;
-    }
-
-    .load-more:hover {
-        background-color: #1976d2;
-    }
+    .news-section { margin: 20px 0; }
+    .post { margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; }
+    img { width: 100%; height: auto; }
+    .social-share a { margin-right: 10px; color: #0066cc; text-decoration: none; }
+    .social-share a:hover { text-decoration: underline; }
 </style>
+
+
+
+
+
+
+
 
 
 
