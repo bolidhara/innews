@@ -1,484 +1,13 @@
-
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>आर्काइव - IN News</title>
-    <link rel="stylesheet" href="styles.css"> <!-- External CSS file -->
+    <title>आर्काइव पेज</title>
     <style>
-        /* Basic Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
+        /* CSS Styles */
 
-        header {
-            background-color: #e60000;
-            padding: 10px 0;
-            color: white;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-        }
-
-        .nav-links {
-            margin: 10px 0;
-        }
-
-        .nav-links a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-        }
-
-        .content {
-            margin: 20px;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-        }
-
-        .news-section {
-            margin: 20px 0;
-        }
-
-        .post {
-            margin-bottom: 15px;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .post h3 {
-            margin: 0;
-            font-size: 1.2em;
-        }
-
-        .post p {
-            font-size: 1em;
-        }
-
-        .social-share a {
-            margin-right: 10px;
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        .social-share a:hover {
-            text-decoration: underline;
-        }
-
-        .load-more {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #e60000;
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>IN News - आर्काइव</h1>
-        <div class="nav-links">
-            <a href="index.html">होम</a>
-            <a href="breaking-news.html">ब्रेकिंग न्यूज</a>
-            <a href="international-news.html">अंतर्राष्ट्रीय समाचार</a>
-            <a href="sports-news.html">खेल समाचार</a>
-            <a href="entertainment-news.html">मनोरंजन समाचार</a>
-        </div>
-    </header>
-
-    <div class="content">
-        <div class="news-section">
-            <h2>आर्काइव न्यूज</h2>
-            <div id="archive-news" class="news-list">
-                <!-- पुराने समाचार यहां लोड होंगे -->
-            </div>
-            <a href="vigyan.html" class="load-more" id="load-archive" onclick="loadMoreArchiveNews()">और खबरें लोड करें</a>
-  <a href="manoranjan.html" class="load-more" id="load-archive" onclick="loadMoreArchiveNews()">और खबरें लोड करें</a>
-  <a href="bharat.html" class="load-more" id="load-archive" onclick="loadMoreArchiveNews()">और खबरें लोड करें</a>
-  <a href="visw.html" class="load-more" id="load-archive" onclick="loadMoreArchiveNews()">और खबरें लोड करें</a>
-  <a href="helth.html" class="load-more" id="load-archive" onclick="loadMoreArchiveNews()">और खबरें लोड करें</a>
-  <a href="khel.html" class="load-more" id="load-archive" onclick="loadMoreArchiveNews()">और खबरें लोड करें</a>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 IN News | सभी अधिकार सुरक्षित</p>
-    </footer>
-
-    <script>
-        let archivePage = 1;  // पेज नंबर
-        let archiveNewsData = [
-            // मैनुअली डाले गए पुराने समाचार
-            {
-                title: "पुरानी खबर 1",
-                content: "यह एक पुरानी खबर है...",
-                image: "archive1.jpg",
-                date: "2025-01-05T08:00:00Z",
-                shareUrl: "https://facebook.com"
-            },
-            {
-                title: "पुरानी खबर 2",
-                content: "यह एक पुरानी खबर है...",
-                image: "archive2.jpg",
-                date: "2024-12-25T15:00:00Z",
-                shareUrl: "https://whatsapp.com"
-            },
-            // अन्य खबरें यहां डालें
-        ];
-    </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-<script>
-    let archivePage = 1;  // पेज नंबर
-    let archiveNewsData = [
-        // मैनुअली डाले गए पुराने समाचार
-        {
-            title: "पुरानी खबर 1",
-            content: "यह एक पुरानी खबर है...",
-            image: "archive1.jpg",
-            date: "2025-01-05T08:00:00Z",  // प्रकाशित होने की तारीख
-            shareUrl: "https://facebook.com"
-        },
-        {
-            title: "पुरानी खबर 2",
-            content: "यह एक पुरानी खबर है...",
-            image: "archive2.jpg",
-            date: "2024-12-25T15:00:00Z",  // प्रकाशित होने की तारीख
-            shareUrl: "https://whatsapp.com"
-        },
-        {
-            title: "पुरानी खबर 3",
-            content: "यह एक और पुरानी खबर है...",
-            image: "archive3.jpg",
-            date: "2023-11-15T10:30:00Z",  // प्रकाशित होने की तारीख
-            shareUrl: "https://instagram.com"
-        },
-        {
-            title: "पुरानी खबर 4",
-            content: "यह एक और पुरानी खबर है...",
-            image: "archive4.jpg",
-            date: "2023-10-10T12:00:00Z",  // प्रकाशित होने की तारीख
-            shareUrl: "https://twitter.com"
-        },
-        // और खबरें जोड़ सकते हैं
-    ];
-
-    // खबरों को तारीख के अनुसार सॉर्ट करना
-    archiveNewsData.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    // खबरें लोड करने का कार्य
-    function loadMoreArchiveNews() {
-        let data = archiveNewsData;
-        let page = archivePage;
-        let start = (page - 1) * 5;
-        let end = start + 5;
-        let newsToLoad = data.slice(start, end);  // पेज के हिसाब से खबरें निकालें
-
-        // HTML में खबरें जोड़ना
-        newsToLoad.forEach(news => {
-            const newsHtml = `
-                <div class="post">
-                    <h3>${news.title}</h3>
-                    <p>${news.content}</p>
-                    <img src="${news.image}" alt="${news.title}">
-                    <p><strong>समय:</strong> ${new Date(news.date).toLocaleString()}</p>
-                    <div class="social-share">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=${news.shareUrl}" target="_blank">Facebook</a>
-                        <a href="https://www.instagram.com/?url=${news.shareUrl}" target="_blank">Instagram</a>
-                        <a href="https://wa.me/?text=${news.shareUrl}" target="_blank">WhatsApp</a>
-                    </div>
-                </div>
-            `;
-            document.getElementById("archive-news").insertAdjacentHTML('beforeend', newsHtml);
-        });
-
-        archivePage++;  // पेज नंबर बढ़ाएं
-
-        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन को हटा दें
-        if ((page * 5) >= data.length) {
-            document.getElementById("load-archive").style.display = 'none';
-        }
-    }
-
-    // पेज लोड होते ही पहली बार खबरें लोड करें
-    window.onload = loadMoreArchiveNews;
-</script>
-
-
-
-
-
-<div id="pagination" class="pagination">
-    <a href="#" id="previous-page" onclick="loadPreviousPage()">पिछला</a>
-    <span id="page-number">पेज 1</span>
-    <a href="#" id="next-page" onclick="loadNextPage()">अगला</a>
-</div>
-
-
-
-
-
-<script>
-    let archivePage = 1;  // पेज नंबर
-    const newsPerPage = 5; // हर पेज पर 5 खबरें लोड होंगी
-
-    // पुराने समाचारों का डेटा (यह मैन्युअली डाला गया है)
-    let archiveNewsData = [
-        {
-            title: "पुरानी खबर 1",
-            content: "यह एक पुरानी खबर है...",
-            image: "archive1.jpg",
-            date: "2025-01-05T08:00:00Z",  // प्रकाशित होने की तारीख
-            shareUrl: "https://facebook.com"
-        },
-        {
-            title: "पुरानी खबर 2",
-            content: "यह एक पुरानी खबर है...",
-            image: "archive2.jpg",
-            date: "2024-12-25T15:00:00Z",
-            shareUrl: "https://whatsapp.com"
-        },
-        {
-            title: "पुरानी खबर 3",
-            content: "यह एक और पुरानी खबर है...",
-            image: "archive3.jpg",
-            date: "2023-11-15T10:30:00Z",
-            shareUrl: "https://instagram.com"
-        },
-        {
-            title: "पुरानी खबर 4",
-            content: "यह एक और पुरानी खबर है...",
-            image: "archive4.jpg",
-            date: "2023-10-10T12:00:00Z",
-            shareUrl: "https://twitter.com"
-        },
-        // अधिक समाचार
-    ];
-
-    // खबरों को तारीख के अनुसार सॉर्ट करना
-    archiveNewsData.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-    // खबरें लोड करने का कार्य
-    function loadArchiveNews(page) {
-        let start = (page - 1) * newsPerPage;
-        let end = start + newsPerPage;
-        let newsToLoad = archiveNewsData.slice(start, end);
-
-        // HTML में खबरें जोड़ना
-        document.getElementById("archive-news").innerHTML = '';  // पहले से लोड हुई खबरें हटाना
-        newsToLoad.forEach(news => {
-            const newsHtml = `
-                <div class="post">
-                    <h3>${news.title}</h3>
-                    <p>${news.content}</p>
-                    <img src="${news.image}" alt="${news.title}">
-                    <p><strong>समय:</strong> ${new Date(news.date).toLocaleString()}</p>
-                    <div class="social-share">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=${news.shareUrl}" target="_blank">Facebook</a>
-                        <a href="https://www.instagram.com/?url=${news.shareUrl}" target="_blank">Instagram</a>
-                        <a href="https://wa.me/?text=${news.shareUrl}" target="_blank">WhatsApp</a>
-                    </div>
-                </div>
-            `;
-            document.getElementById("archive-news").insertAdjacentHTML('beforeend', newsHtml);
-        });
-
-        // पेज नंबर अपडेट करना
-        document.getElementById("page-number").innerText = `पेज ${page}`;
-
-        // पेजनेशन बटन को सक्षम/अक्षम करना
-        if (page === 1) {
-            document.getElementById("previous-page").style.display = 'none';
-        } else {
-            document.getElementById("previous-page").style.display = 'inline-block';
-        }
-
-        if (end >= archiveNewsData.length) {
-            document.getElementById("next-page").style.display = 'none';
-        } else {
-            document.getElementById("next-page").style.display = 'inline-block';
-        }
-    }
-
-    // "अगला" पेज लोड करना
-    function loadNextPage() {
-        archivePage++;
-        loadArchiveNews(archivePage);
-    }
-
-    // "पिछला" पेज लोड करना
-    function loadPreviousPage() {
-        archivePage--;
-        loadArchiveNews(archivePage);
-    }
-
-    // पेज लोड होते ही पहली बार खबरें लोड करें
-    window.onload = function() {
-        loadArchiveNews(archivePage);
-    };
-</script>
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>आर्काइव - समाचार</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-
-    
-
-    
-
-    <!-- फूटर -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 समाचार वेबसाइट. सर्वाधिकार सुरक्षित.</p>
-        </div>
-    </footer>
-
-    <!-- जावास्क्रिप्ट कोड -->
-    <script>
-        let archivePage = 1;
-        const newsPerPage = 5;
-
-        let archiveNewsData = [
-            {
-                title: "पुरानी खबर 1",
-                content: "यह एक पुरानी खबर है...",
-                image: "archive1.jpg",
-                date: "2025-01-05T08:00:00Z",
-                shareUrl: "https://facebook.com"
-            },
-            {
-                title: "पुरानी खबर 2",
-                content: "यह एक पुरानी खबर है...",
-                image: "archive2.jpg",
-                date: "2024-12-25T15:00:00Z",
-                shareUrl: "https://whatsapp.com"
-            },
-            {
-                title: "पुरानी खबर 3",
-                content: "यह एक और पुरानी खबर है...",
-                image: "archive3.jpg",
-                date: "2023-11-15T10:30:00Z",
-                shareUrl: "https://instagram.com"
-            },
-            {
-                title: "पुरानी खबर 4",
-                content: "यह एक और पुरानी खबर है...",
-                image: "archive4.jpg",
-                date: "2023-10-10T12:00:00Z",
-                shareUrl: "https://twitter.com"
-            },
-        ];
-
-        archiveNewsData.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        function loadArchiveNews(page) {
-            let start = (page - 1) * newsPerPage;
-            let end = start + newsPerPage;
-            let newsToLoad = archiveNewsData.slice(start, end);
-
-            document.getElementById("archive-news").innerHTML = '';
-            newsToLoad.forEach(news => {
-                const newsHtml = `
-                    <div class="post">
-                        <h3>${news.title}</h3>
-                        <p>${news.content}</p>
-                        <img src="${news.image}" alt="${news.title}">
-                        <p><strong>समय:</strong> ${new Date(news.date).toLocaleString()}</p>
-                        <div class="social-share">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=${news.shareUrl}" target="_blank">Facebook</a>
-                            <a href="https://www.instagram.com/?url=${news.shareUrl}" target="_blank">Instagram</a>
-                            <a href="https://wa.me/?text=${news.shareUrl}" target="_blank">WhatsApp</a>
-                        </div>
-                    </div>
-                `;
-                document.getElementById("archive-news").insertAdjacentHTML('beforeend', newsHtml);
-            });
-
-            document.getElementById("page-number").innerText = `पेज ${page}`;
-
-            if (page === 1) {
-                document.getElementById("previous-page").style.display = 'none';
-            } else {
-                document.getElementById("previous-page").style.display = 'inline-block';
-            }
-
-            if (end >= archiveNewsData.length) {
-                document.getElementById("next-page").style.display = 'none';
-            } else {
-                document.getElementById("next-page").style.display = 'inline-block';
-            }
-        }
-
-        function loadNextPage() {
-            archivePage++;
-            loadArchiveNews(archivePage);
-        }
-
-        function loadPreviousPage() {
-            archivePage--;
-            loadArchiveNews(archivePage);
-        }
-
-        window.onload = function() {
-            loadArchiveNews(archivePage);
-        };
-    </script>
-
-</body>
-</html>
-
-
-
-
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>आर्काइव पृष्ठ</title>
-    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -502,11 +31,12 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            text-align: center;
         }
 
         nav ul li {
-            display: inline;
-            margin-right: 20px;
+            display: inline-block;
+            margin: 0 10px;
         }
 
         nav ul li a {
@@ -517,7 +47,7 @@
 
         .container {
             width: 90%;
-            margin: 0 auto;
+            margin: 20px auto;
         }
 
         .archive-section {
@@ -575,9 +105,6 @@
             color: white;
             padding: 10px;
             text-align: center;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
         }
 
         @media (max-width: 600px) {
@@ -585,13 +112,122 @@
                 font-size: 28px;
             }
 
-            .pagination a {
-                padding: 8px;
-                font-size: 14px;
+            nav ul li {
+                display: block;
+                margin-bottom: 10px;
             }
         }
     </style>
 </head>
 <body>
 
-   
+    <!-- Header -->
+    <header>
+        <h1>आर्काइव पेज</h1>
+        <nav>
+            <ul>
+                <li><a href="https://innews.onrender.com/bharat.html">भारत</a></li>
+                <li><a href="https://innews.onrender.com/vishw.html">विश्व</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Container -->
+    <div class="container">
+        <div class="archive-section" id="archive-section">
+            <h2>आर्काइव पोस्ट्स</h2>
+            <!-- आर्काइव पोस्ट्स यहां लोड होंगी -->
+        </div>
+        <div class="pagination" id="pagination">
+            <!-- Pagination links will be dynamically generated -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 INNews. सभी अधिकार सुरक्षित।</p>
+    </footer>
+
+    <!-- JavaScript Code -->
+    <script>
+        // Placeholder for posts data
+        const archivePosts = [
+            // Sample data from Bharat page
+            {
+                title: "भारत की पुरानी खबर",
+                content: "यह भारत से संबंधित पुरानी खबर है।",
+                image: "https://via.placeholder.com/300",
+                date: "2024-12-01T10:00:00Z",
+                link: "https://innews.onrender.com/bharat.html"
+            },
+            // Sample data from Vishw page
+            {
+                title: "विश्व की पुरानी खबर",
+                content: "यह विश्व से संबंधित पुरानी खबर है।",
+                image: "https://via.placeholder.com/300",
+                date: "2024-11-25T10:00:00Z",
+                link: "https://innews.onrender.com/vishw.html"
+            }
+            // अन्य पोस्ट यहां जोड़ें
+        ];
+
+        const postsPerPage = 5; // एक पेज पर पोस्ट की संख्या
+        let currentPage = 1;
+
+        // फ़ंक्शन: पोस्ट्स लोड करना
+        function loadPosts(page = 1) {
+            const start = (page - 1) * postsPerPage;
+            const end = start + postsPerPage;
+            const postsToShow = archivePosts.slice(start, end);
+
+            const archiveSection = document.getElementById("archive-section");
+            archiveSection.innerHTML = ""; // पुराने पोस्ट्स हटाएं
+
+            postsToShow.forEach(post => {
+                const postHtml = `
+                    <div class="post">
+                        <h3>${post.title}</h3>
+                        <p>${post.content}</p>
+                        <img src="${post.image}" alt="${post.title}">
+                        <p><strong>तारीख:</strong> ${new Date(post.date).toLocaleString()}</p>
+                        <a href="${post.link}" target="_blank">अधिक पढ़ें</a>
+                        <div class="social-share">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=${post.link}" target="_blank">Facebook</a>
+                            <a href="https://www.instagram.com/?url=${post.link}" target="_blank">Instagram</a>
+                            <a href="https://wa.me/?text=${post.link}" target="_blank">WhatsApp</a>
+                        </div>
+                    </div>
+                `;
+                archiveSection.insertAdjacentHTML("beforeend", postHtml);
+            });
+
+            renderPagination();
+        }
+
+        // फ़ंक्शन: पेजिनेशन बनाना
+        function renderPagination() {
+            const totalPages = Math.ceil(archivePosts.length / postsPerPage);
+            const pagination = document.getElementById("pagination");
+            pagination.innerHTML = ""; // पुराने पेज हटाएं
+
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === currentPage) {
+                    pagination.innerHTML += `<span>${i}</span>`;
+                } else {
+                    pagination.innerHTML += `<a href="#" onclick="changePage(${i})">${i}</a>`;
+                }
+            }
+        }
+
+        // फ़ंक्शन: पेज बदलना
+        function changePage(page) {
+            currentPage = page;
+            loadPosts(page);
+        }
+
+        // पेज लोड पर पोस्ट्स लोड करें
+        loadPosts();
+    </script>
+
+</body>
+</html>
