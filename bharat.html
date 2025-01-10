@@ -127,140 +127,93 @@
 
 
 
-
-<!-- India News Section -->
+<!-- भारत समाचार सेक्शन -->
 <div class="news-section">
     <h2>भारत समाचार</h2>
     <div id="india-news" class="news-list">
         <!-- यहां खबरें लोड होंगी -->
     </div>
-    <a href="#" class="load-more" id="load-india" onclick="loadMoreNews('india')">और खबरें लोड करें</a>
+    <a href="#" class="load-more" id="load-india" onclick="loadMoreNews()">और खबरें लोड करें</a>
 </div>
 
 <script>
-    // स्टेटिक डेटा (इसे API से बदल सकते हैं)
-    const worldNewsData = {
-        india: [
-            { title: "भारत में COVID-19 की स्थिति", content: "यह खबर कोरोना वायरस के बारे में है।", image: "india1.jpg", date: "2025-01-09 10:00:00" },
-            { title: "भारत में चुनाव परिणाम", content: "यह खबर आगामी चुनावों के परिणामों के बारे में है।", image: "india2.jpg", date: "2025-01-08 14:00:00" },
-            { title: "नई सरकारी योजनाएं", content: "यह खबर नई सरकारी योजनाओं के बारे में है।", image: "india3.jpg", date: "2025-01-07 09:30:00" },
-            { title: "भारत का आर्थिक विकास", content: "यह खबर भारतीय अर्थव्यवस्था के विकास के बारे में है।", image: "india4.jpg", date: "2025-01-06 16:45:00" },
-            { title: "भारत में मौसम का हाल", content: "यह खबर भारत के मौसम के बारे में है।", image: "india5.jpg", date: "2025-01-05 11:00:00" },
-            { title: "भारत में खेलों की स्थिति", content: "यह खबर खेलों से संबंधित है।", image: "india6.jpg", date: "2025-01-04 18:00:00" },
-            { title: "भारत में शिक्षा नीति", content: "यह खबर शिक्षा नीति के बारे में है।", image: "india7.jpg", date: "2025-01-03 13:00:00" },
-            { title: "भारत में पर्यावरण जागरूकता", content: "यह खबर पर्यावरण जागरूकता के बारे में है।", image: "india8.jpg", date: "2025-01-02 12:00:00" }
-        ]
-    };
+    let indiaPage = 1;  // पेज नंबर
+    let indiaNewsData = [
+        // मैनुअली खबरें डाली जाएंगी
 
-    let indiaPage = 1;
+        {
+            title: "भारत में बड़ा कदम",
+            content: "भारत सरकार ने एक नया कानून पास किया है...",
+            image: "india1.jpg",
+            date: "2025-01-09T10:00:00Z",
+            shareUrl: "https://facebook.com",
+            shareUrl: "https://whatsapp.com" // URL को बदलें
+        },
+        {
+            title: "भारत का नया अभियान",
+            content: "प्रधानमंत्री ने एक नई योजना का उद्घाटन किया है...",
+            image: "india2.jpg",
+            date: "2025-01-08T14:30:00Z",
+            shareUrl: "https://facebook.com",
+            shareUrl: "https://whatsapp.com" // URL को बदलें
+        },
+        // अन्य खबरें यहाँ डालें
+    ];
 
-    // तारीख और समय के आधार पर खबरों को सॉर्ट करें (नवीनतम खबर पहले)
-    function sortNewsByDate(newsArray) {
-        return newsArray.sort((a, b) => new Date(b.date) - new Date(a.date));
+    // अगर 100 से अधिक खबरें हो जाएं तो आर्काइव पेज पर ले जाएं
+    if (indiaNewsData.length > 100) {
+        window.location.href = "/archives.html";  // आर्काइव पेज पर रीडायरेक्ट करें
     }
 
     // खबरें लोड करने का कार्य
-    function loadMoreNews(section) {
-        let data = worldNewsData[section];
-
-        // खबरों को सॉर्ट करें ताकि नवीनतम खबरें पहले आ जाएं
-        let sortedData = sortNewsByDate(data);
-
+    function loadMoreNews() {
+        let data = indiaNewsData;
         let page = indiaPage;
         let start = (page - 1) * 5;
         let end = start + 5;
-        let newsToLoad = sortedData.slice(start, end);
+        let newsToLoad = data.slice(start, end);  // पेज के हिसाब से खबरें निकालें
 
         // HTML में खबरें जोड़ना
         newsToLoad.forEach(news => {
             const newsHtml = `
                 <div class="post">
-                    <img src="${news.image}" alt="${news.title}" class="news-image">
                     <h3>${news.title}</h3>
                     <p>${news.content}</p>
-                    <p class="news-date">तारीख: ${new Date(news.date).toLocaleDateString()} | समय: ${new Date(news.date).toLocaleTimeString()}</p>
+                    <img src="${news.image}" alt="${news.title}">
+                    <p><strong>समय:</strong> ${new Date(news.date).toLocaleString()}</p>
+                    <div class="social-share">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=${news.shareUrl}" target="_blank">Facebook</a>
+                        <a href="https://www.instagram.com/?url=${news.shareUrl}" target="_blank">Instagram</a>
+                        <a href="https://wa.me/?text=${news.shareUrl}" target="_blank">WhatsApp</a>
+                    </div>
                 </div>
             `;
-            document.getElementById(`${section}-news`).insertAdjacentHTML('beforeend', newsHtml);
+            document.getElementById("india-news").insertAdjacentHTML('beforeend', newsHtml);
         });
 
-        // अगला पेज बढ़ाना
-        indiaPage++;
+        indiaPage++;  // पेज नंबर बढ़ाएं
 
-        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन हटा देना
-        if ((page * 5) >= sortedData.length) {
-            document.getElementById(`load-${section}`).style.display = 'none';
+        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन को हटा दें
+        if ((page * 5) >= data.length) {
+            document.getElementById("load-india").style.display = 'none';
         }
     }
 
-    // पेज लोड होते ही पहली बार खबरें लोड करना
-    window.onload = function() {
-        loadMoreNews('india');
-    };
+    // पेज लोड होते ही पहली बार खबरें लोड करें
+    window.onload = loadMoreNews;
 </script>
 
-<!-- CSS (खबरों और इमेज के लेआउट को ठीक करने के लिए) -->
 <style>
-    .news-section {
-        margin: 20px 0;
-    }
-
-    .news-list {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .post {
-        width: 100%;
-        max-width: 480px;
-        margin: 10px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-
-    .post img.news-image {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .post h3 {
-        font-size: 18px;
-        color: #333;
-        margin: 10px;
-    }
-
-    .post p {
-        font-size: 14px;
-        color: #555;
-        margin: 0 10px 10px;
-    }
-
-    .news-date {
-        font-size: 12px;
-        color: #888;
-        margin: 10px;
-    }
-
-    .load-more {
-        text-align: center;
-        display: block;
-        background-color: #2196f3;
-        color: white;
-        padding: 10px 20px;
-        text-decoration: none;
-        font-size: 16px;
-        margin-top: 30px;
-        text-align: center;
-    }
-
-    .load-more:hover {
-        background-color: #1976d2;
-    }
+    .news-section { margin: 20px 0; }
+    .post { margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; }
+    img { width: 100%; height: auto; }
+    .social-share a { margin-right: 10px; color: #0066cc; text-decoration: none; }
+    .social-share a:hover { text-decoration: underline; }
 </style>
+
+
+
+
 
 
 
