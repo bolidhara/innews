@@ -3,231 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>आर्काइव पेज</title>
+    <title>पुरानी खबरें</title>
     <style>
-        /* CSS Styles */
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f4f4f9;
+            color: #333;
         }
 
         header {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
+            background-color: #0047ab;
+            color: #fff;
+            padding: 20px;
             text-align: center;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            text-align: center;
-        }
-
-        nav ul li {
-            display: inline-block;
-            margin: 0 10px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        .container {
-            width: 90%;
+        .archive-post {
+            background-color: #fff;
             margin: 20px auto;
-        }
-
-        .archive-section {
-            margin-top: 20px;
-        }
-
-        .archive-section h2 {
-            font-size: 28px;
-            text-align: center;
-        }
-
-        .post {
-            background-color: white;
-            border: 1px solid #ddd;
             padding: 15px;
-            margin-bottom: 20px;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .post img {
+        .archive-post h3 {
+            margin: 10px 0;
+        }
+
+        .archive-post img {
             width: 100%;
             height: auto;
-        }
-
-        .social-share a {
-            margin-right: 10px;
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        .social-share a:hover {
-            text-decoration: underline;
-        }
-
-        .pagination {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .pagination a {
-            text-decoration: none;
-            color: #0066cc;
-            padding: 10px;
-            margin: 0 5px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        .pagination span {
-            padding: 10px;
-            margin: 0 5px;
+            border-radius: 8px;
         }
 
         footer {
-            background-color: #333;
-            color: white;
-            padding: 10px;
             text-align: center;
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 28px;
-            }
-
-            nav ul li {
-                display: block;
-                margin-bottom: 10px;
-            }
+            margin: 20px 0;
+            color: #555;
         }
     </style>
 </head>
 <body>
-
-    <!-- Header -->
     <header>
-        <h1>आर्काइव पेज</h1>
-        <nav>
-            <ul>
-                <li><a href="https://innews.onrender.com/bharat.html">भारत</a></li>
-                <li><a href="https://innews.onrender.com/vishw.html">विश्व</a></li>
-            </ul>
-        </nav>
+        <h1>पुरानी खबरें</h1>
     </header>
 
-    <!-- Container -->
-    <div class="container">
-        <div class="archive-section" id="archive-section">
-            <h2>आर्काइव पोस्ट्स</h2>
-            <!-- आर्काइव पोस्ट्स यहां लोड होंगी -->
-        </div>
-        <div class="pagination" id="pagination">
-            <!-- Pagination links will be dynamically generated -->
-        </div>
+    <div id="archive-content">
+        <!-- आर्काइव खबरें यहां लोड होंगी -->
     </div>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 INNews. सभी अधिकार सुरक्षित।</p>
+        <p>© 2025 विज्ञान समाचार</p>
     </footer>
 
-    <!-- JavaScript Code -->
     <script>
-        // Placeholder for posts data
-        const archivePosts = [
-            // Sample data from Bharat page
-            {
-                title: "भारत की पुरानी खबर",
-                content: "यह भारत से संबंधित पुरानी खबर है।",
-                image: "https://via.placeholder.com/300",
-                date: "2024-12-01T10:00:00Z",
-                link: "https://innews.onrender.com/bharat.html"
-            },
-            // Sample data from Vishw page
-            {
-                title: "विश्व की पुरानी खबर",
-                content: "यह विश्व से संबंधित पुरानी खबर है।",
-                image: "https://via.placeholder.com/300",
-                date: "2024-11-25T10:00:00Z",
-                link: "https://innews.onrender.com/vishw.html"
-            }
-            // अन्य पोस्ट यहां जोड़ें
-        ];
+        // Google Apps Script API URL
+        const apiUrl = 'YOUR_DEPLOYED_WEB_APP_URL'; // यहां अपनी API का URL डालें
 
-        const postsPerPage = 5; // एक पेज पर पोस्ट की संख्या
-        let currentPage = 1;
-
-        // फ़ंक्शन: पोस्ट्स लोड करना
-        function loadPosts(page = 1) {
-            const start = (page - 1) * postsPerPage;
-            const end = start + postsPerPage;
-            const postsToShow = archivePosts.slice(start, end);
-
-            const archiveSection = document.getElementById("archive-section");
-            archiveSection.innerHTML = ""; // पुराने पोस्ट्स हटाएं
-
-            postsToShow.forEach(post => {
-                const postHtml = `
-                    <div class="post">
-                        <h3>${post.title}</h3>
-                        <p>${post.content}</p>
-                        <img src="${post.image}" alt="${post.title}">
-                        <p><strong>तारीख:</strong> ${new Date(post.date).toLocaleString()}</p>
-                        <a href="${post.link}" target="_blank">अधिक पढ़ें</a>
-                        <div class="social-share">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u=${post.link}" target="_blank">Facebook</a>
-                            <a href="https://www.instagram.com/?url=${post.link}" target="_blank">Instagram</a>
-                            <a href="https://wa.me/?text=${post.link}" target="_blank">WhatsApp</a>
-                        </div>
-                    </div>
-                `;
-                archiveSection.insertAdjacentHTML("beforeend", postHtml);
-            });
-
-            renderPagination();
+        // आर्काइव खबरें लोड करें
+        function loadArchivedPosts() {
+            fetch(apiUrl) // Google Drive से डेटा लाएं
+                .then(response => response.json())
+                .then(data => {
+                    const archiveContent = document.getElementById('archive-content');
+                    data.forEach(post => {
+                        const postHtml = `
+                            <div class="archive-post">
+                                <h3>${post.title}</h3>
+                                <img src="${post.image}" alt="${post.title}">
+                                <p>${post.content}</p>
+                                <p><strong>समय:</strong> ${new Date(post.date).toLocaleString()}</p>
+                            </div>
+                        `;
+                        archiveContent.insertAdjacentHTML('beforeend', postHtml);
+                    });
+                })
+                .catch(error => console.error('Error fetching archived posts:', error));
         }
 
-        // फ़ंक्शन: पेजिनेशन बनाना
-        function renderPagination() {
-            const totalPages = Math.ceil(archivePosts.length / postsPerPage);
-            const pagination = document.getElementById("pagination");
-            pagination.innerHTML = ""; // पुराने पेज हटाएं
-
-            for (let i = 1; i <= totalPages; i++) {
-                if (i === currentPage) {
-                    pagination.innerHTML += `<span>${i}</span>`;
-                } else {
-                    pagination.innerHTML += `<a href="#" onclick="changePage(${i})">${i}</a>`;
-                }
-            }
-        }
-
-        // फ़ंक्शन: पेज बदलना
-        function changePage(page) {
-            currentPage = page;
-            loadPosts(page);
-        }
-
-        // पेज लोड पर पोस्ट्स लोड करें
-        loadPosts();
+        window.onload = loadArchivedPosts;
     </script>
-
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+// खबरें आर्काइव में सेव करें
+function saveArchivedPosts(posts) {
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(posts)
+    })
+    .then(response => response.text())
+    .then(data => console.log('Response:', data))
+    .catch(error => console.error('Error saving posts:', error));
+}
+
+// उदाहरण डेटा सेव करना
+const examplePosts = [
+    {
+        title: "पुरानी खबर 1",
+        content: "यह पुरानी खबर 1 है।",
+        image: "https://via.placeholder.com/800x400",
+        date: new Date().toISOString()
+    }
+];
+
+saveArchivedPosts(examplePosts);
+
