@@ -37,6 +37,7 @@
 
         header .search-bar {
             padding: 5px;
+            width: 200px;
         }
 
         section {
@@ -50,6 +51,8 @@
             border: none;
             padding: 10px 20px;
             cursor: pointer;
+            display: block;
+            margin: 20px 0;
         }
 
         button:hover {
@@ -66,6 +69,30 @@
         footer a {
             color: #ffcc00;
             text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .news-item {
+            margin-bottom: 20px;
+        }
+
+        .news-item img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .news-item h4 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .news-item p {
+            font-size: 14px;
+            color: #555;
         }
     </style>
 </head>
@@ -120,7 +147,7 @@
             const range = 'Sheet1!A:F'; // रेंज (A से F कॉलम)
             const apiKey = 'AIzaSyCI8vGiFy8sSk2Hzlsvl8dtNN9Tk4cJttI1lLgk'; // API Key
 
-            const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+            const url = `https://cors-anywhere.herokuapp.com/https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
 
             try {
                 const response = await fetch(url);
@@ -139,18 +166,20 @@
 
             // मुख्य खबर
             const mainNews = news.find(news => news[1] === 'YES');
-            mainNewsContent.innerHTML = `
-                <h3>${mainNews[2]}</h3>
-                <p>${mainNews[3]}</p>
-                <img src="${mainNews[4]}" alt="Main News Image">
-            `;
+            if (mainNews) {
+                mainNewsContent.innerHTML = `
+                    <h3>${mainNews[2]}</h3>
+                    <p>${mainNews[3]}</p>
+                    <img src="${mainNews[4]}" alt="Main News Image">
+                `;
+            }
 
             // उप खबरें
             subNewsList.innerHTML = '';
             news.forEach(newsItem => {
                 if (newsItem[1] !== 'YES') {
                     subNewsList.innerHTML += `
-                        <div>
+                        <div class="news-item">
                             <h4>${newsItem[2]}</h4>
                             <p>${newsItem[3]}</p>
                             <img src="${newsItem[4]}" alt="Sub News Image">
