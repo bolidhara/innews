@@ -162,3 +162,65 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function loadNews() {
+    const sheetId = '<  1BBAuidD66wNekAOLSVpZ8020C9iVv4Gx74WPuIIj5g4
+>';  // यहाँ पर अपनी गूगल शीट ID डालें
+    const range = 'Sheet1!A:F'; // अपनी शीट का रेंज डालें (A:F आपके कॉलम से मेल खाता है)
+    const apiKey = '<Your_API_Key>'; // API Key यहां डालें
+
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+    
+    const response = await fetch(url);
+    const result = await response.json();
+    data = result.values; // गूगल शीट से लोड किए गए डेटा को स्टोर करें
+    displayNews(data); // पेज पर डेटा दिखाएं
+}
+
+
+
+function displayNews(news) {
+    const mainNewsContent = document.getElementById('main-news-content');
+    const subNewsList = document.getElementById('sub-news-list');
+
+    // मुख्य खबर
+    const mainNews = news.find(news => news[1] === 'YES');
+    mainNewsContent.innerHTML = `
+        <h3>${mainNews[2]}</h3>
+        <p>${mainNews[3]}</p>
+        <img src="${mainNews[4]}" alt="Main News Image">
+    `;
+
+    // उप खबरें
+    subNewsList.innerHTML = '';
+    news.forEach(newsItem => {
+        if (newsItem[1] !== 'YES') {
+            subNewsList.innerHTML += `
+                <div>
+                    <h4>${newsItem[2]}</h4>
+                    <p>${newsItem[3]}</p>
+                    <img src="${newsItem[4]}" alt="Sub News Image">
+                </div>
+            `;
+        }
+    });
+}
+
+
+
+
+
+window.onload = loadNews; // पेज लोड होने पर गूगल शीट से खबरें लोड करें
