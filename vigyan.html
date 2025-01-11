@@ -3,258 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>न्यूज़ ब्लॉग पोस्ट</title>
+    <title>विज्ञान समाचार</title>
     <style>
+        /* बेसिक पेज स्टाइल */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f4f4f9;
+            color: #333;
         }
+
         header {
-            background-color: #d32f2f;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        header a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            font-size: 18px;
-        }
-        nav {
-            background-color: #ffeb3b;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav a {
-            color: black;
-            text-decoration: none;
-            padding: 10px 20px;
-            font-size: 18px;
-        }
-        .main-content {
-            max-width: 1200px;
-            margin: 20px auto;
-            background-color: white;
+            background-color: #0047ab;
+            color: #fff;
             padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .main-section {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px auto;
+            max-width: 800px;
+            border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .post {
-            margin-bottom: 40px;
+
+        .main-section h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
         }
-        .post h2 {
-            color: #d32f2f;
-        }
-        .post p {
-            font-size: 16px;
+
+        .main-section p {
+            font-size: 1rem;
             line-height: 1.6;
         }
-        .load-more {
-            background-color: #2196f3;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-size: 16px;
-            display: block;
-            margin: 30px auto;
-            text-align: center;
-        }
-        footer {
-            background-color: #d32f2f;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            position: relative; /* Changed to relative */
+
+        .main-section img {
             width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .sub-news-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+
+        .sub-news {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .sub-news h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .sub-news img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .sub-news p {
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .load-more {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #0047ab;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .load-more:hover {
+            background-color: #003386;
         }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        let page = 1; // Track the page number
-
-        function loadPosts() {
-            $.ajax({
-                url: 'https://innews/load-posts.php', // PHP फाइल का पूरा URL
-                type: 'GET',
-                data: { page: page },
-                beforeSend: function() {
-                    $(".load-more").text('खबरें लोड हो रही हैं...');
-                },
-                success: function(response) {
-                    if (response.trim()) {
-                        $(".main-content").append(response); // Append new posts to the page
-                        page++; // Increment the page number for the next request
-                    } else {
-                        $(".load-more").text('कोई और खबरें नहीं हैं!');
-                        $(".load-more").hide(); // Hide the button when no more posts are available
-                    }
-                },
-                error: function() {
-                    $(".load-more").text('लोड करने में समस्या हुई।');
-                }
-            });
-        }
-
-        $(document).ready(function() {
-            loadPosts(); // Load the first set of posts initially
-
-            $(".load-more").on('click', function(e) {
-                e.preventDefault(); // Prevent default anchor action
-                loadPosts(); // Load more posts when the button is clicked
-            });
-        });
-    </script>
 </head>
 <body>
+    <header>
+        <h1>विज्ञान समाचार</h1>
+    </header>
 
-<header>
-    <a href="#">न्यूज़ वेबसाइट</a>
-</header>
+    <!-- मुख्य सेक्शन -->
+    <section class="main-section">
+        <h2>मुख्य समाचार</h2>
+        <img src="https://via.placeholder.com/800x400" alt="मुख्य समाचार">
+        <p>यहां मुख्य विज्ञान समाचार का विवरण होगा। यह हिस्सा सबसे महत्वपूर्ण खबर के लिए आरक्षित है।</p>
+    </section>
 
-<nav>
-    <a href="#">होम</a>
-    <a href="break news.html">ब्रेकिंग न्यूज</a>
-    <a href="#">मुख्य समाचार</a>
-    <a href="#">वीडियो</a>
-    <a href="#">फोटो गैलरी</a>
-    <a href="#">लाइव न्यूज</a>
-</nav>
+    <!-- सब-सेक्शन -->
+    <section class="sub-news-sections">
+        <div class="sub-news">
+            <h3>खबर 1</h3>
+            <img src="https://via.placeholder.com/300x200" alt="खबर 1">
+            <p>यहां खबर 1 का विवरण होगा।</p>
+        </div>
+        <div class="sub-news">
+            <h3>खबर 2</h3>
+            <img src="https://via.placeholder.com/300x200" alt="खबर 2">
+            <p>यहां खबर 2 का विवरण होगा।</p>
+        </div>
+        <div class="sub-news">
+            <h3>खबर 3</h3>
+            <img src="https://via.placeholder.com/300x200" alt="खबर 3">
+            <p>यहां खबर 3 का विवरण होगा।</p>
+        </div>
+        <div class="sub-news">
+            <h3>खबर 4</h3>
+            <img src="https://via.placeholder.com/300x200" alt="खबर 4">
+            <p>यहां खबर 4 का विवरण होगा।</p>
+        </div>
+        <div class="sub-news">
+            <h3>खबर 5</h3>
+            <img src="https://via.placeholder.com/300x200" alt="खबर 5">
+            <p>यहां खबर 5 का विवरण होगा।</p>
+        </div>
+        <div class="sub-news">
+            <h3>खबर 6</h3>
+            <img src="https://via.placeholder.com/300x200" alt="खबर 6">
+            <p>यहां खबर 6 का विवरण होगा।</p>
+        </div>
+        <div class="sub-news">
+            <h3>खबर 7</h3>
+            <img src="https://via.placeholder.com/300x200" alt="खबर 7">
+            <p>यहां खबर 7 का विवरण होगा।</p>
+        </div>
+    </section>
 
-<div class="main-content">
-    <!-- मुख्य पोस्ट यहां दिखाई देंगे -->
+    <!-- लोड मोर बटन -->
+    <a class="load-more" id="load-more" onclick="loadMore()">और खबरें लोड करें</a>
 
-
-
-
-
-
-
-
-
-
-<!-- विज्ञान समाचार सेक्शन -->
-<div class="news-section">
-    <h2>विज्ञान समाचार</h2>
-    <div id="science-news" class="news-list">
-        <!-- यहां खबरें लोड होंगी -->
-    </div>
-    <a href="#" class="load-more" id="load-science" onclick="loadMoreNews()">और खबरें लोड करें</a>
-</div>
-
-<script>
-    let sciencePage = 1;  // पेज नंबर
-    let scienceNewsData = [
-        // मैनुअली खबरें डाली जाएंगी
-        {
-            title: "नई प्रौद्योगिकी से ऊर्जा बचत",
-            content: "वैज्ञानिकों ने एक नई प्रौद्योगिकी विकसित की है जो ऊर्जा की बचत में मदद करेगी...",
-            image: "science1.jpg",
-            date: "2025-01-09T10:00:00Z",
-            shareUrl: "https://facebook.com" // URL को बदलें
-        },
-        {
-            title: "स्वास्थ्य पर विज्ञान का प्रभाव",
-            content: "विज्ञान ने स्वास्थ्य देखभाल में कई सुधार किए हैं...",
-            image: "science2.jpg",
-            date: "2025-01-08T14:30:00Z",
-            shareUrl: "https://whatsapp.com" // URL को बदलें
-        },
-        {
-            title: "नए अंतरिक्ष मिशन का अनावरण",
-            content: "नासा ने एक नए अंतरिक्ष मिशन का अनावरण किया है...",
-            image: "science3.jpg",
-            date: "2025-01-07T12:00:00Z",
-            shareUrl: "https://instagram.com" // URL को बदलें
-        },
-        {
-            title: "कृत्रिम बुद्धिमत्ता का विकास",
-            content: "कृत्रिम बुद्धिमत्ता ने कई उद्योगों में क्रांति ला दी है...",
-            image: "science4.jpg",
-            date: "2025-01-06T16:00:00Z",
-            shareUrl: "https://facebook.com" // URL को बदलें
-        },
-        // अन्य खबरें यहाँ डालें
-    ];
-
-    // अगर 100 से अधिक खबरें हो जाएं तो आर्काइव पेज पर ले जाएं
-    if (scienceNewsData.length > 100) {
-        window.location.href = "/archives.html";  // आर्काइव पेज पर रीडायरेक्ट करें
-    }
-
-    // खबरें लोड करने का कार्य
-    function loadMoreNews() {
-        let data = scienceNewsData;
-        let page = sciencePage;
-        let start = (page - 1) * 5;
-        let end = start + 5;
-        let newsToLoad = data.slice(start, end);  // पेज के हिसाब से खबरें निकालें
-
-        // HTML में खबरें जोड़ना
-        newsToLoad.forEach(news => {
-            const newsHtml = `
-                <div class="post">
-                    <h3>${news.title}</h3>
-                    <p>${news.content}</p>
-                    <img src="${news.image}" alt="${news.title}">
-                    <p><strong>समय:</strong> ${new Date(news.date).toLocaleString()}</p>
-                    <div class="social-share">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(news.shareUrl)}" target="_blank">Facebook</a>
-                        <a href="https://www.instagram.com/?url=${encodeURIComponent(news.shareUrl)}" target="_blank">Instagram</a>
-                        <a href="https://wa.me/?text=${encodeURIComponent(news.shareUrl)}" target="_blank">WhatsApp</a>
-                    </div>
-                </div>
-            `;
-            document.getElementById("science-news").insertAdjacentHTML('beforeend', newsHtml);
-        });
-
-        sciencePage++;  // पेज नंबर बढ़ाएं
-
-        // अगर सभी खबरें लोड हो चुकी हैं तो "और खबरें लोड करें" बटन को हटा दें
-        if ((page * 5) >= data.length) {
-            document.getElementById("load-science").style.display = 'none';
+    <script>
+        // लोड मोर बटन पर खबरें लोड करने का बेसिक कोड
+        function loadMore() {
+            alert("अधिक खबरें लोड करने के लिए कोड जोड़ा जाएगा।");
         }
-    }
-
-    // पेज लोड होते ही पहली बार खबरें लोड करें
-    window.onload = loadMoreNews;
-</script>
-
-<style>
-    .news-section { margin: 20px 0; }
-    .post { margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; }
-    img { width: 100%; height: auto; }
-    .social-share a { margin-right: 10px; color: #0066cc; text-decoration: none; }
-    .social-share a:hover { text-decoration: underline; }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-<!-- "लोड मोर" बटन -->
-<a href="#" class="load-more">और खबरें लोड करें</a>
-
-<footer>
-    <p>&copy; 2025 IN News | सभी अधिकार सुरक्षित</p>
-</footer>
-
+    </script>
 </body>
 </html>
-
-
-
-
 
 
 
@@ -272,41 +185,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>न्यूज़ पेज</title>
-    
+    <title>विज्ञान समाचार</title>
+    <style>
+        /* चरण 1 का CSS कोड */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #0047ab;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .main-section, .sub-news {
+            background-color: #fff;
+            border-radius: 8px;
+            margin: 20px auto;
+            padding: 15px;
+            max-width: 800px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-section img, .sub-news img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .main-section h2, .sub-news h3 {
+            margin: 10px 0;
+            font-size: 1.8rem;
+        }
+
+        .sub-news-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .load-more {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #0047ab;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .load-more:hover {
+            background-color: #003386;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>ताजा खबरें</h1>
+        <h1>विज्ञान समाचार</h1>
     </header>
 
-    <!-- मुख्य कंटेंट को यहां लोड किया जाएगा -->
-    <div id="main-content"></div>
+    <!-- मुख्य सेक्शन -->
+    <section class="main-section" id="main-news">
+        <h2>मुख्य समाचार</h2>
+        <img src="https://via.placeholder.com/800x400" alt="मुख्य समाचार" id="main-news-image">
+        <p id="main-news-content">यहां मुख्य विज्ञान समाचार का विवरण होगा।</p>
+    </section>
+
+    <!-- सब-सेक्शन -->
+    <section class="sub-news-sections" id="sub-news-sections">
+        <!-- खबरें यहां JavaScript के जरिए लोड होंगी -->
+    </section>
+
+    <!-- लोड मोर बटन -->
+    <a class="load-more" id="load-more" onclick="loadMore()">और खबरें लोड करें</a>
 
     <script>
-        const apiUrl = 'https://script.google.com/macros/s/AKfycbxXhkcaYzjfjY5t2yl7WVDfwOrFLTlpwvmPtRunRAs5p1nFsG4j60sjeetL1GCGV0v8/exec';
+        // Google Apps Script API URL
+        const apiUrl = 'https://script.google.com/macros/s/YOUR_API_URL/exec'; // अपना डिप्लॉय किया हुआ URL यहाँ डालें
 
+        let currentIndex = 0; // अभी तक लोड की गई खबरों की गिनती
+
+        // गूगल शीट से डेटा लोड करने का फंक्शन
         function loadPosts() {
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    const contentDiv = document.getElementById('main-content');
-                    data.forEach(post => {
-                        const postHtml = `
-                            <div class="post">
-                                <h3>${post.title}</h3>
-                                <p>${post.content}</p>
-                                <img src="${post.image}" alt="${post.title}">
-                                <p><strong>समय:</strong> ${new Date(post.date).toLocaleString()}</p>
-                            </div>
-                        `;
-                        contentDiv.insertAdjacentHTML('beforeend', postHtml);
-                    });
+                    if (data.length > 0) {
+                        displayPosts(data);
+                    } else {
+                        document.getElementById('load-more').textContent = "कोई और खबरें नहीं हैं।";
+                    }
                 })
                 .catch(error => console.error('Error fetching data:', error));
         }
 
-        // जब पेज लोड हो, तो डेटा लोड करें
+        // खबरों को पेज पर दिखाने का फंक्शन
+        function displayPosts(data) {
+            const mainNews = data[currentIndex]; // मुख्य खबर
+            if (currentIndex === 0) {
+                document.getElementById('main-news-content').textContent = mainNews.content;
+                document.getElementById('main-news-image').src = mainNews.image;
+            }
+
+            const subNewsContainer = document.getElementById('sub-news-sections');
+            const nextBatch = data.slice(currentIndex + 1, currentIndex + 8); // 7 खबरें एक बार में लोड करें
+
+            nextBatch.forEach(news => {
+                const newsHtml = `
+                    <div class="sub-news">
+                        <h3>${news.title}</h3>
+                        <img src="${news.image}" alt="${news.title}">
+                        <p>${news.content}</p>
+                    </div>
+                `;
+                subNewsContainer.insertAdjacentHTML('beforeend', newsHtml);
+            });
+
+            currentIndex += 8; // अगली 8 खबरों के लिए इंडेक्स बढ़ाएं
+
+            if (currentIndex >= data.length) {
+                document.getElementById('load-more').style.display = 'none'; // लोड मोर बटन छुपाएं
+            }
+        }
+
+        // लोड मोर बटन के लिए फंक्शन
+        function loadMore() {
+            loadPosts();
+        }
+
+        // पेज लोड होने पर पहली बार खबरें लोड करें
         window.onload = loadPosts;
     </script>
 </body>
@@ -316,3 +338,187 @@
 
 
 
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>विज्ञान समाचार</title>
+    <style>
+        /* चरण 1 और 2 का CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #0047ab;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .main-section, .sub-news {
+            background-color: #fff;
+            border-radius: 8px;
+            margin: 20px auto;
+            padding: 15px;
+            max-width: 800px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-section img, .sub-news img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .main-section h2, .sub-news h3 {
+            margin: 10px 0;
+            font-size: 1.8rem;
+        }
+
+        .sub-news-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .load-more, .view-archive {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #0047ab;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .load-more:hover, .view-archive:hover {
+            background-color: #003386;
+        }
+
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>विज्ञान समाचार</h1>
+    </header>
+
+    <!-- मुख्य सेक्शन -->
+    <section class="main-section" id="main-news">
+        <h2>मुख्य समाचार</h2>
+        <img src="https://via.placeholder.com/800x400" alt="मुख्य समाचार" id="main-news-image">
+        <p id="main-news-content">यहां मुख्य विज्ञान समाचार का विवरण होगा।</p>
+    </section>
+
+    <!-- सब-सेक्शन -->
+    <section class="sub-news-sections" id="sub-news-sections">
+        <!-- खबरें यहां JavaScript के जरिए लोड होंगी -->
+    </section>
+
+    <!-- लोड मोर बटन -->
+    <a class="load-more" id="load-more" onclick="loadMore()">और खबरें लोड करें</a>
+
+    <!-- आर्काइव पेज बटन -->
+    <a class="view-archive" href="archive.html">पुरानी खबरें देखें</a>
+
+    <footer>
+        <p>© 2025 विज्ञान समाचार</p>
+    </footer>
+
+    <script>
+        // Google Apps Script API URL
+        const apiUrl = 'https://script.google.com/macros/s/YOUR_API_URL/exec'; // अपना API URL डालें
+
+        let currentIndex = 0; // अभी तक लोड की गई खबरों की गिनती
+        let loadedPosts = []; // लोड की गई खबरों को ट्रैक करें
+
+        // गूगल शीट से डेटा लोड करने का फंक्शन
+        function loadPosts() {
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        managePosts(data);
+                    } else {
+                        document.getElementById('load-more').textContent = "कोई और खबरें नहीं हैं।";
+                    }
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // खबरों को प्रबंधित और पेज पर दिखाने का फंक्शन
+        function managePosts(data) {
+            const archivePosts = data.slice(100); // 100 से अधिक खबरें आर्काइव में डालें
+            if (archivePosts.length > 0) {
+                moveToArchive(archivePosts);
+            }
+
+            const displayPosts = data.slice(currentIndex, currentIndex + 8); // 8 खबरें लोड करें
+            displayPosts.forEach(post => {
+                loadedPosts.push(post);
+            });
+            renderPosts(displayPosts);
+
+            currentIndex += 8; // अगली खबरों के लिए इंडेक्स बढ़ाएं
+
+            if (currentIndex >= 100) {
+                document.getElementById('load-more').style.display = 'none'; // 100 खबरें होने पर लोड मोर बटन छुपाएं
+            }
+        }
+
+        // खबरों को पेज पर दिखाने का फंक्शन
+        function renderPosts(posts) {
+            const subNewsContainer = document.getElementById('sub-news-sections');
+            posts.forEach(news => {
+                const newsHtml = `
+                    <div class="sub-news">
+                        <h3>${news.title}</h3>
+                        <img src="${news.image}" alt="${news.title}">
+                        <p>${news.content}</p>
+                    </div>
+                `;
+                subNewsContainer.insertAdjacentHTML('beforeend', newsHtml);
+            });
+        }
+
+        // आर्काइव में खबरें भेजने का फंक्शन
+        function moveToArchive(posts) {
+            localStorage.setItem('archivedPosts', JSON.stringify(posts)); // आर्काइव डेटा लोकल स्टोरेज में सेव करें
+        }
+
+        // लोड मोर बटन के लिए फंक्शन
+        function loadMore() {
+            loadPosts();
+        }
+
+        // पेज लोड होने पर पहली बार खबरें लोड करें
+        window.onload = loadPosts;
+    </script>
+</body>
+</html>
