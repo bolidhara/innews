@@ -12,6 +12,7 @@
             background-color: #f9f9f9;
         }
 
+        /* हेडर */
         header {
             background-color: #ffcc00;
             padding: 10px;
@@ -40,6 +41,7 @@
             width: 200px;
         }
 
+        /* मुख्य और उप खबरें */
         section {
             padding: 20px;
             margin: 10px 0;
@@ -59,6 +61,7 @@
             background-color: #0056b3;
         }
 
+        /* फुटर */
         footer {
             background-color: #333;
             color: white;
@@ -76,6 +79,7 @@
             text-decoration: underline;
         }
 
+        /* खबरों का डिजाइन */
         .news-item {
             margin-bottom: 20px;
         }
@@ -137,30 +141,48 @@
         </div>
     </footer>
 
-    <script>
-        let counter = 10; // लोड की जाने वाली खबरों की प्रारंभिक संख्या
-        let data = []; // डेटा को स्टोर करने के लिए
+    <!-- JavaScript कोड यहाँ होगा -->
+</body>
+</html>
 
-        
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// वैश्विक डेटा और काउंटर (लोड करने के लिए)
+let counter = 10;  // प्रारंभिक लोड संख्या
+let data = [];     // डेटा को स्टोर करने के लिए
 
 // गूगल शीट से डेटा लोड करना
 async function loadNews() {
-    const sheetId = '1BBAuidD66wNekAOLSVpZ8020C9iVv4Gx74WPuIIj5g4
-'; // गूगल शीट ID
+    const sheetId = '1BBAuidD66wNekAOLSVpZ8020C9iVv4Gx74WPuIIj5g4'; // गूगल शीट ID
     const range = 'Sheet1!A:F'; // रेंज (A से F कॉलम)
-    const apiKey =https://script.google.com/macros/s/AKfycbzm20Zc1vOP9pFXe5ZgAunhRhj6Su_5MnTD5j9I4Cc/dev; // API Key
+    const apiKey = 'AIzaSyCI8vGiFy8sSk2Hzlsvl8dtNN9Tk4cJttI1lLgk'; // API Key
 
-    // URL को सही तरीके से बनाना
+    // गूगल शीट से डेटा प्राप्त करने के लिए URL बनाएँ
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
 
     try {
-        const response = await fetch(url); // डेटा लोड करें
-        const result = await response.json(); // JSON डेटा प्राप्त करें
+        const response = await fetch(url); // गूगल शीट से डेटा प्राप्त करें
+        const result = await response.json(); // JSON में परिणाम प्राप्त करें
 
         if (result.values) {
-            const data = result.values; // गूगल शीट से लोड किए गए डेटा को स्टोर करें
-            displayNews(data); // पेज पर डेटा दिखाएं
+            data = result.values; // डेटा को स्टोर करें
+            displayNews(data.slice(0, counter)); // शुरुआती डेटा को प्रदर्शित करें
         } else {
             console.error('गूगल शीट से डेटा नहीं मिला');
         }
@@ -169,78 +191,45 @@ async function loadNews() {
     }
 }
 
-// displayNews फ़ंक्शन को सुनिश्चित करें कि यह डिफाइन किया गया हो
+// डेटा को HTML में प्रदर्शित करना
 function displayNews(news) {
-    // यहाँ पर आपका कोड होगा जो डेटा को HTML में प्रदर्शित करेगा
     const mainNewsContent = document.getElementById('main-news-content');
     const subNewsList = document.getElementById('sub-news-list');
 
     // मुख्य खबर
-    const mainNews = news.find(news => news[1] === 'YES');
-    mainNewsContent.innerHTML = `
-        <h3>${mainNews[2]}</h3>
-        <p>${mainNews[3]}</p>
-        <img src="${mainNews[4]}" alt="Main News Image">
-    `;
+    const mainNews = news.find(news => news[1] === 'YES');  // मुख्य खबर का चयन करें
+    if (mainNews) {
+        mainNewsContent.innerHTML = `
+            <h3>${mainNews[2]}</h3>   <!-- खबर का शीर्षक -->
+            <p>${mainNews[3]}</p>     <!-- खबर का विवरण -->
+            <img src="${mainNews[4]}" alt="Main News Image" />  <!-- मुख्य खबर का चित्र -->
+        `;
+    } else {
+        mainNewsContent.innerHTML = '<p>मुख्य खबर नहीं मिली।</p>';
+    }
 
     // उप खबरें
-    subNewsList.innerHTML = '';
+    subNewsList.innerHTML = '';  // पहले से लोड की गई उप खबरें हटाएँ
     news.forEach(newsItem => {
-        if (newsItem[1] !== 'YES') {
+        if (newsItem[1] !== 'YES') {  // मुख्य खबर को छोड़कर बाकी सब उप खबरें
             subNewsList.innerHTML += `
-                <div>
-                    <h4>${newsItem[2]}</h4>
-                    <p>${newsItem[3]}</p>
-                    <img src="${newsItem[4]}" alt="Sub News Image">
+                <div class="news-item">
+                    <h4>${newsItem[2]}</h4>  <!-- उप खबर का शीर्षक -->
+                    <p>${newsItem[3]}</p>    <!-- उप खबर का विवरण -->
+                    <img src="${newsItem[4]}" alt="Sub News Image" />  <!-- उप खबर का चित्र -->
                 </div>
             `;
         }
     });
 }
 
-window.onload = loadNews; // पेज लोड होने पर गूगल शीट से खबरें लोड करें
+// "लोड मोर" बटन की कार्यविधि
+function loadMoreNews() {
+    if (counter < data.length) {
+        counter += 10;  // लोड की जाने वाली खबरों की संख्या बढ़ाएं
+        displayNews(data.slice(0, counter));  // नई खबरें प्रदर्शित करें
+    }
+}
 
-
-
-        // खबरें प्रदर्शित करना
-        function displayNews(news) {
-            const mainNewsContent = document.getElementById('main-news-content');
-            const subNewsList = document.getElementById('sub-news-list');
-
-            // मुख्य खबर
-            const mainNews = news.find(news => news[1] === 'YES');
-            if (mainNews) {
-                mainNewsContent.innerHTML = `
-                    <h3>${mainNews[2]}</h3>
-                    <p>${mainNews[3]}</p>
-                    <img src="${mainNews[4]}" alt="Main News Image">
-                `;
-            }
-
-            // उप खबरें
-            subNewsList.innerHTML = '';
-            news.forEach(newsItem => {
-                if (newsItem[1] !== 'YES') {
-                    subNewsList.innerHTML += `
-                        <div class="news-item">
-                            <h4>${newsItem[2]}</h4>
-                            <p>${newsItem[3]}</p>
-                            <img src="${newsItem[4]}" alt="Sub News Image">
-                        </div>
-                    `;
-                }
-            });
-        }
-
-        // लोड मोर बटन
-        function loadMoreNews() {
-            if (counter < data.length) {
-                counter += 10;
-                displayNews(data.slice(0, counter));
-            }
-        }
-
-        window.onload = loadNews; // पेज लोड होने पर गूगल शीट से खबरें लोड करें
-    </script>
-</body>
-</html>
+// पेज लोड होने पर गूगल शीट से डेटा लोड करें
+window.onload = loadNews;  // पेज लोड होने पर गूगल शीट से खबरें लोड करने के लिए
