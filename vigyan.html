@@ -147,7 +147,8 @@
             const range = 'Sheet1!A:F'; // रेंज (A से F कॉलम)
             const apiKey = 'AIzaSyCI8vGiFy8sSk2Hzlsvl8dtNN9Tk4cJttI1lLgk'; // API Key
 
-            const url = `https://cors-anywhere.herokuapp.com/https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+            const url = `https://cors-anywhere.herokuapp.com/https://sheets.googleapis.com/v4/spreadsheets/1BBAuidD66wNekAOLSVpZ8020C9iVv4Gx74WPuIIj5g4/values/Sheet1!A:F?key='AIzaSyCI8vGiFy8sSk2Hzlsvl8dtNN9Tk4cJttI1lLgk';
+
 
             try {
                 const response = await fetch(url);
