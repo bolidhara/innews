@@ -141,24 +141,65 @@
         let counter = 10; // लोड की जाने वाली खबरों की प्रारंभिक संख्या
         let data = []; // डेटा को स्टोर करने के लिए
 
-        // गूगल शीट से डेटा लोड करना
-        async function loadNews() {
-            const sheetId = '1BBAuidD66wNekAOLSVpZ8020C9iVv4Gx74WPuIIj5g4'; // गूगल शीट ID
-            const range = 'Sheet1!A:F'; // रेंज (A से F कॉलम)
-            const apiKey = 'AIzaSyCI8vGiFy8sSk2Hzlsvl8dtNN9Tk4cJttI1lLgk'; // API Key
+        
 
-            
-const url = `https://cors-anywhere.herokuapp.com/https://sheets.googleapis.com/v4/spreadsheets/1BBAuidD66wNekAOLSVpZ8020C9iVv4Gx74WPuIIj5g4/values/Sheet1!A:F?key=AIzaSyCI8vGiFy8sSk2Hzlsvl8dtNN9Tk4cJttI1lLgk`;
 
-            try {
-                const response = await fetch(url);
-                const result = await response.json();
-                data = result.values; // गूगल शीट से लोड किए गए डेटा को स्टोर करें
-                displayNews(data); // पेज पर डेटा दिखाएं
-            } catch (error) {
-                console.error('डेटा लोड करने में समस्या:', error);
-            }
+// गूगल शीट से डेटा लोड करना
+async function loadNews() {
+    const sheetId = '1BBAuidD66wNekAOLSVpZ8020C9iVv4Gx74WPuIIj5g4'; // गूगल शीट ID
+    const range = 'Sheet1!A:F'; // रेंज (A से F कॉलम)
+    const apiKey = 'AIzaSyCI8vGiFy8sSk2Hzlsvl8dtNN9Tk4cJttI1lLgk'; // API Key
+
+    // URL को सही तरीके से बनाना
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+    try {
+        const response = await fetch(url); // डेटा लोड करें
+        const result = await response.json(); // JSON डेटा प्राप्त करें
+
+        if (result.values) {
+            const data = result.values; // गूगल शीट से लोड किए गए डेटा को स्टोर करें
+            displayNews(data); // पेज पर डेटा दिखाएं
+        } else {
+            console.error('गूगल शीट से डेटा नहीं मिला');
         }
+    } catch (error) {
+        console.error('डेटा लोड करने में समस्या:', error); // त्रुटि संदेश
+    }
+}
+
+// displayNews फ़ंक्शन को सुनिश्चित करें कि यह डिफाइन किया गया हो
+function displayNews(news) {
+    // यहाँ पर आपका कोड होगा जो डेटा को HTML में प्रदर्शित करेगा
+    const mainNewsContent = document.getElementById('main-news-content');
+    const subNewsList = document.getElementById('sub-news-list');
+
+    // मुख्य खबर
+    const mainNews = news.find(news => news[1] === 'YES');
+    mainNewsContent.innerHTML = `
+        <h3>${mainNews[2]}</h3>
+        <p>${mainNews[3]}</p>
+        <img src="${mainNews[4]}" alt="Main News Image">
+    `;
+
+    // उप खबरें
+    subNewsList.innerHTML = '';
+    news.forEach(newsItem => {
+        if (newsItem[1] !== 'YES') {
+            subNewsList.innerHTML += `
+                <div>
+                    <h4>${newsItem[2]}</h4>
+                    <p>${newsItem[3]}</p>
+                    <img src="${newsItem[4]}" alt="Sub News Image">
+                </div>
+            `;
+        }
+    });
+}
+
+window.onload = loadNews; // पेज लोड होने पर गूगल शीट से खबरें लोड करें
+
+
 
         // खबरें प्रदर्शित करना
         function displayNews(news) {
