@@ -116,10 +116,20 @@
 
         // गूगल शीट से डेटा लोड करना
         async function loadNews() {
-            const response = await fetch('https://sheets.googleapis.com/v4/spreadsheets/<sheet_id>/values/<range>?key=<API_KEY>');
-            const result = await response.json();
-            data = result.values; // गूगल शीट से लोड किए गए डेटा को स्टोर करें
-            displayNews(data); // पेज पर डेटा दिखाएं
+            const sheetId = '1BBAuidD66wNekAOLSVpZ8020C9iVv4Gx74WPuIIj5g4'; // गूगल शीट ID
+            const range = 'Sheet1!A:F'; // रेंज (A से F कॉलम)
+            const apiKey = 'AIzaSyCI8vGiFy8sSk2Hzlsvl8dtNN9Tk4cJttI1lLgk'; // API Key
+
+            const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                const result = await response.json();
+                data = result.values; // गूगल शीट से लोड किए गए डेटा को स्टोर करें
+                displayNews(data); // पेज पर डेटा दिखाएं
+            } catch (error) {
+                console.error('डेटा लोड करने में समस्या:', error);
+            }
         }
 
         // खबरें प्रदर्शित करना
@@ -161,75 +171,4 @@
         window.onload = loadNews; // पेज लोड होने पर गूगल शीट से खबरें लोड करें
     </script>
 </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-<html>
-<head>
-<body>
-<script>
-
-
-async function loadNews() {
-    const sheetId = '<  1BBAuidD66wNekAOLSVpZ8020C9iVv4Gx74WPuIIj5g4
->';  // यहाँ पर अपनी गूगल शीट ID डालें
-    const range = 'Sheet1!A:F'; // अपनी शीट का रेंज डालें (A:F आपके कॉलम से मेल खाता है)
-    const apiKey = '<https://script.google.com/macros/s/AKfycbzm20Zc1vOP9pFXe5ZgAunhRhj6Su_5MnTD5j9I4Cc/dev>'; // API Key यहां डालें
-
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-    
-    const response = await fetch(url);
-    const result = await response.json();
-    data = result.values; // गूगल शीट से लोड किए गए डेटा को स्टोर करें
-    displayNews(data); // पेज पर डेटा दिखाएं
-}
-
-
-
-function displayNews(news) {
-    const mainNewsContent = document.getElementById('main-news-content');
-    const subNewsList = document.getElementById('sub-news-list');
-
-    // मुख्य खबर
-    const mainNews = news.find(news => news[1] === 'YES');
-    mainNewsContent.innerHTML = `
-        <h3>${mainNews[2]}</h3>
-        <p>${mainNews[3]}</p>
-        <img src="${mainNews[4]}" alt="Main News Image">
-    `;
-
-    // उप खबरें
-    subNewsList.innerHTML = '';
-    news.forEach(newsItem => {
-        if (newsItem[1] !== 'YES') {
-            subNewsList.innerHTML += `
-                <div>
-                    <h4>${newsItem[2]}</h4>
-                    <p>${newsItem[3]}</p>
-                    <img src="${newsItem[4]}" alt="Sub News Image">
-                </div>
-            `;
-        }
-    });
-}
-
-
-
-
-
-window.onload = loadNews; // पेज लोड होने पर गूगल शीट से खबरें लोड करें
-
-</script>
-</body>
-</head>
-
 </html>
